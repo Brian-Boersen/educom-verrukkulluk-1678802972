@@ -1,0 +1,27 @@
+
+title waarderen en favorieten
+
+==Transactie: WAARDERING==
+actor Gebruiker
+Gebruiker->Front End: klikt op aantal sterren: 1-5
+Front End->Back End: stuur gegeven(gerecht_id,aantal)
+
+database Database
+Back End->Database: waardering data toevoegen met recept_id: id
+
+Back End->Database: waardering data ophalen met recept_id: id
+Back End<-Database: waardeering data met id: id
+Back End->Back End:bereken niewe gemiddelde beoordeling
+
+
+Front End<-Back End: waardering weergeven
+
+space 
+
+==Transactie: FAVORIETEN==
+Gebruiker ->Front End: klikt op favoriet knop
+Front End ->Back End: update favoriet met (gerecht_id, user_id)
+Back End ->Database: voeg gerecht_id to met user_id 
+Database ->Back End: taak voltooid
+
+Back End ->Front End: weergeef data

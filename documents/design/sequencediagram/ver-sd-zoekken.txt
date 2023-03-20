@@ -1,0 +1,12 @@
+title zoekken
+
+==Transactie: zoekken==
+actor Gebruiker
+Gebruiker->Front End: voert zoekterm in
+Front End->Back End: zoek zoekterm
+
+database Database
+Back End->Database: zoek zoekterm in db 
+Back End<-Database: data met zoekterm
+
+Front End<-Back End: data weergeven

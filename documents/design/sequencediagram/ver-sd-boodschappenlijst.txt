@@ -1,0 +1,27 @@
+
+title boodschappen lijst
+
+==Transactie: TOEVOEGEN BOODSCHAPPEN==
+actor Gebruiker
+Gebruiker->Front End: klikt op recept toevoegen
+Front End->Back End: stuur gegeven(gerecht_id,user_id)
+
+database Database
+Back End->Database: data ophalen van boodschappenlijst met user_id: id
+Back End<-Database: data boodschappenlijst
+Back End->Back End:bereken benodigde hoeveelheid
+Back End->Database: boodschappenlijst data bijwerken met ingredienten_id: id
+
+Back End<-Database: data boodschappenlijst
+
+
+Front End<-Back End: boodschappenlijst weergeven
+
+space 
+
+==Transactie: VERWIJDEREN VAN PRODUCT==
+Gebruiker ->Front End: klikt op verwijderen
+Front End ->Back End: verwijder artikel met id: id
+Back End ->Database: werk data bij met artikel_id: id
+Database ->Back End: new data
+Back End ->Front End: weergeef new data

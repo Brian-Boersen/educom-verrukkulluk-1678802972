@@ -1,0 +1,40 @@
+
+title home page en recept pagina
+
+==Transactie: HOMEPAGE==
+actor Gebruiker
+Gebruiker->Front End: Invoeren url
+Front End->Back End: ophalen info
+
+database Database
+Back End->Database: ophalen gerechten met id: id
+Back End<-Database: gegevens data met id: id
+
+Back End->Back End: bereken prijs
+Back End->Back End: bereken calorien:
+Back End->Back End: bereken waardering
+
+Front End<-Back End: homepage weergeven
+
+  space
+  space
+
+==Transactie: GERECHTEN BINNENHALEN==
+Gebruiker->Front End: Klikt op recept
+Front End->Back End: Ophalen gerecht met id: id
+
+Back End->Database: gerecht data met id: id
+Back End<-Database: Resultaat Query
+space
+Back End->Database: keuken data met id: id
+Back End->Database: type data met id: id
+Back End->Database: user data met id: id
+Back End<-Database: Resultaat Query
+
+Back End->Back End: bereken prijs
+Back End->Back End: bereken calorien:
+Back End->Back End: bereken waardering
+
+
+
+Front End<-Back End: gerechten pagina weergeven
