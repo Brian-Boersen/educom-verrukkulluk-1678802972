@@ -7,7 +7,12 @@ class kitchen_type {
         $this->connection = $connection;
     }
 
-    public function getKitchenType($kitchentype){
-        $sql = "SELECT * FROM keuken_type WHERE id = $kitchentype"	
+    public function selectKitchenType($kitchentype){
+        $sql = "SELECT * FROM keuken_type WHERE id = $kitchentype";
+
+        $result = mysqli_query($this->connection, $sql);
+        $kitchenTypeData = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+        return $kitchenTypeData;
     }
 }
