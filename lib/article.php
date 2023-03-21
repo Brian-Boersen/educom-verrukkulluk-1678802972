@@ -1,6 +1,6 @@
 <?php
 
-class artikel {
+class article {
 
     private $connection;
 
