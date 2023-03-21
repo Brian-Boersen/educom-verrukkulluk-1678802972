@@ -87,10 +87,10 @@ INSERT INTO `gerecht` (`id`, `keuken_id`, `type_id`, `user_id`, `datum_toegevoeg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gerecht info`
+-- Table structure for table `gerecht_info`
 --
 
-CREATE TABLE `gerecht info` (
+CREATE TABLE `gerecht_info` (
   `id` int(11) NOT NULL,
   `record_type` char(2) NOT NULL,
   `gerecht_id` int(11) NOT NULL,
@@ -101,10 +101,10 @@ CREATE TABLE `gerecht info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `gerecht info`
+-- Dumping data for table `gerecht_info`
 --
 
-INSERT INTO `gerecht info` (`id`, `record_type`, `gerecht_id`, `user_id`, `datum`, `nummeriek_veld`, `tekst_veld`) VALUES
+INSERT INTO `gerecht_info` (`id`, `record_type`, `gerecht_id`, `user_id`, `datum`, `nummeriek_veld`, `tekst_veld`) VALUES
 (5, 'B', 1, NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi atque explicabo repellat ipsam qui iure dolorem nemo temporibus quos nostrum voluptatem corporis maxime, optio vero deserunt fugiat eos aliquam consequatur!'),
 (6, 'B', 1, NULL, NULL, 2, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi atque explicabo repellat ipsam qui iure dolorem nemo temporibus quos nostrum voluptatem corporis maxime, optio vero deserunt fugiat eos aliquam consequatur!'),
 (7, 'B', 1, NULL, NULL, 3, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi atque explicabo repellat ipsam qui iure dolorem nemo temporibus quos nostrum voluptatem corporis maxime, optio vero deserunt fugiat eos aliquam consequatur!'),
@@ -238,9 +238,9 @@ ALTER TABLE `gerecht`
   ADD KEY `users_fk` (`user_id`);
 
 --
--- Indexes for table `gerecht info`
+-- Indexes for table `gerecht_info`
 --
-ALTER TABLE `gerecht info`
+ALTER TABLE `gerecht_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `gerecht_fk` (`gerecht_id`),
   ADD KEY `user_fk` (`user_id`);
@@ -282,9 +282,9 @@ ALTER TABLE `gerecht`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `gerecht info`
+-- AUTO_INCREMENT for table `gerecht_info`
 --
-ALTER TABLE `gerecht info`
+ALTER TABLE `gerecht_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
@@ -318,9 +318,9 @@ ALTER TABLE `gerecht`
   ADD CONSTRAINT `users_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION;
 
 --
--- Constraints for table `gerecht info`
+-- Constraints for table `gerecht_info`
 --
-ALTER TABLE `gerecht info`
+ALTER TABLE `gerecht_info`
   ADD CONSTRAINT `gerecht_fk` FOREIGN KEY (`gerecht_id`) REFERENCES `gerecht` (`id`),
   ADD CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION;
 
