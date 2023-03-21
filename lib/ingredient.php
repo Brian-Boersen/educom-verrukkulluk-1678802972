@@ -1,5 +1,5 @@
 <?php
-require_once("./article.php");
+
 
 class ingredient{
     private $connection;
@@ -10,7 +10,7 @@ class ingredient{
         $this->art = new article($connection);
     }
 
-    public function selectIngredient($ingredient_id){
+   /* public function selectIngredient($ingredient_id){
         $sql = "SELECT * FROM ingredient WHERE id = $ingredient_id";
         
         $result = mysqli_query($this->connection,$sql);
@@ -19,5 +19,23 @@ class ingredient{
         $artData = $this->art->selectArticle($ingredientData["artikel_id"]);
         
         return $ingredientData + $artData;
+    }*/
+
+    public function selectingredients($gerecht_id){
+        $sql = "SELECT * FROM ingredient WHERE gerecht_id = $gerecht_id";
+        
+        $result = mysqli_query($this->connection,$sql);
+        $ingredientData = [];
+
+       while($ingredient = mysqli_fetch_array($result, MYSQLI_ASSOC) ){          
+            $artData = $this->getArticle($ingredient["artikel_id"]);
+            $ingredientData[] = $ingredient + $artData;
+        }
+
+        return $ingredientData;
+    }
+
+    private function getArticle($artikel_id){
+        return $this->art->selectArticle($artikel_id);
     }
 }
