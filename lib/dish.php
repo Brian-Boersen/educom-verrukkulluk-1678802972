@@ -109,6 +109,20 @@ class dish {
         return $dish_data;
     }
 
+    public function determineFavorite($user_id, $dish_id){
+        $isFavorite = false;
+        
+        $favorite_data = $this->getFavorite($dish_id);
+
+        foreach ($favorite_data as $favorite){
+            if($favorite["user_id"] == $user_id){
+                $isFavorite = true;
+            }
+        }
+
+        return  $isFavorite;
+    }
+
     //calculations---------------------------------------------------------------------------------------------------------------------------------
     //for 4 persons
     private function calculateTotalPrice($ingredients){
