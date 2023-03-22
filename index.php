@@ -18,7 +18,7 @@ $dish_info = new dish_info($db->getConnection());
 //$data = $user->selectUser(1);
 //$data = $ki_type->selectKitchenType(1);
 //$data = $ingr->selectIngredients(2);
-$data = $dish_info->selectDischInfo(1);
+$data = $dish_info->addDishInfo(1,"F");
 
 /// RETURN
 echo "<pre>";

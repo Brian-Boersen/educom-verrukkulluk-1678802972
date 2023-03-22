@@ -9,9 +9,22 @@ class dish_info{
         $this->user = new user($connection);
     }
 
-    public function addDishInfo($gerecht_id,$rec_type,$user_id = null,$date = null,$num_field = null, $tekst_field = null){
-        
-    }
+    //input B: preperation step, O: comment, F: favorite or W: rating
+    public function addDishInfo($gerecht_id,$record_type = "input B: preperation step, O: comment, F: favorite or W: rating",$user_id = null,$date = null,$num_field = null, $tekst_field = null){
+        if($record_type != ("B"||"O"||"F"||"W")){ 
+            echo "record_type needs to be B, O, F or W";
+           return;
+        }     
+            $sql = "INSERT INTO `dish_info` * values ($record_type,$gerecht_id,$user_id,$date,$num_field,$tekst_field)";
+
+            echo "id before: ".mysqli_insert_id($this->connection);
+
+            $result = mysqli_query($this->connection,$sql);
+            
+            if($result == true){
+                echo "id after: " . mysqli_insert_id($this->connection);
+            }
+    }    //input B: preperation step, O: comment, F: favorite or W: rating
 
     public function deleteDishInfo(){
         //????????????????????????????????????
