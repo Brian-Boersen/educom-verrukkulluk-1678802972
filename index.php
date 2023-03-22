@@ -20,7 +20,7 @@ $dish = new dish($db->getConnection());
 //$data = $user->selectUser(1);
 //$data = $ki_type->selectKitchenType(1);
 //$data = $ingr->selectIngredients(2);
-$data = $dish->selectDish(2);
+$data = $dish->selectDishes([2,3,1]);
 
 //$dish_info->addRating(2,3,2);
 

@@ -14,6 +14,54 @@ class dish {
         $this->ingredient = new ingredient($connection);
         $this->dish_info = new dish_info($connection);
     }
+    
+    public function selectDishes($dish_ids = []){
+        $dishes = [];
+        $dish_data = [
+            "id" => "",
+            "keuken" => [],
+            "type" => [],
+            "user" => [],
+            "datum_toegevoegd" => "",
+            "titel" => "",
+            "korte_omschrijving" => "",
+            "lange_omschrijving" => "",
+            "afbeelding" => "",
+            "ingredienten" => [],
+            "favoriet" => [],
+            "waarderingen" => [],
+            "totaalprijs" => "",
+            "calorieen" => "",
+            "gemiddelde_waardering" => ""
+        ];
+
+        foreach ($dish_ids as $dish_id){
+            $sql = "SELECT * FROM gerecht where id = $dish_id";
+            $result = mysqli_query($this->connection,$sql);
+            $bareDishData = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                
+            $dish_data["id"] = $bareDishData["id"];
+            $dish_data["keuken"] = $this->getKitchen($bareDishData["keuken_id"]);
+            $dish_data["type"] = $this->getType($bareDishData["type_id"]);
+            $dish_data["user"] = $this->getUser($bareDishData["user_id"]);
+            $dish_data["datum_toegevoegd"] = $bareDishData["datum_toegevoegd"];
+            $dish_data["titel"] = $bareDishData["titel"];
+            $dish_data["korte_omschrijving"] = $bareDishData["korte_omschrijving"];
+            $dish_data["lange_omschrijving"] = $bareDishData["lange_omschrijving"];
+            $dish_data["afbeelding"] = $bareDishData["afbeelding"];
+            $dish_data["ingredienten"] = $this->getIngredients($bareDishData["keuken_id"]);
+            $dish_data["favoriet"] = $this->getFavorite($bareDishData["id"]);
+            $dish_data["waardering"] = $this->getRating($bareDishData["id"]);
+            $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
+            $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
+            $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
+
+            $dishes[] = $dish_data;
+        }
+
+        return $dishes;
+    }
 
     public function selectDish($dish_id){
         $dish_data = [
@@ -57,8 +105,8 @@ class dish {
         $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
         $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
         $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
+
         return $dish_data;
-        //return $bareDishData;
     }
 
     //calculations---------------------------------------------------------------------------------------------------------------------------------
