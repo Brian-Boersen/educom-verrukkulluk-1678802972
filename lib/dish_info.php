@@ -22,13 +22,13 @@ class dish_info{
         $result = mysqli_query($this->connection,$sql);      
     }   
     
-    public function addScore($dish_id,$score,$user_id = null){
-        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id,nummeriek_veld) values ('W',$dish_id,$user_id,$score)";
+    public function addRating($dish_id,$rating,$user_id = null){
+        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id,nummeriek_veld) values ('W',$dish_id,$user_id,$rating)";
         
         $existing_data = $this->selectDischInfo($dish_id,"W",$user_id);
         
         if($user_id != null && count($existing_data) > 0){
-            $sql = "UPDATE gerecht_info SET nummeriek_veld = $score where id = " . $existing_data[0]["id"];
+            $sql = "UPDATE gerecht_info SET nummeriek_veld = $rating where id = " . $existing_data[0]["id"];
         }
 
         $result = mysqli_query($this->connection,$sql);      
