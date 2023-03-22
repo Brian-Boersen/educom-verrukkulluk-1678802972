@@ -18,8 +18,10 @@ $dish_info = new dish_info($db->getConnection());
 //$data = $user->selectUser(1);
 //$data = $ki_type->selectKitchenType(1);
 //$data = $ingr->selectIngredients(2);
-$data = $dish_info->addDishInfo(1,"F");
+
+$dish_info->addScore(2,1,1);
+$dish_info->addScore(2,2,1);
 
 /// RETURN
 echo "<pre>";
-var_dump($data);
+//var_dump($data);

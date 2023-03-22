@@ -9,53 +9,62 @@ class dish_info{
         $this->user = new user($connection);
     }
 
-    //input B: preperation step, O: comment, F: favorite or W: rating
-    public function addDishInfo($gerecht_id,$record_type = "input B: preperation step, O: comment, F: favorite or W: rating",$user_id = null,$date = null,$num_field = null, $tekst_field = null){
-        if($record_type != ("B"||"O"||"F"||"W")){ 
-            echo "record_type needs to be B, O, F or W";
-           return;
-        }     
-            $sql = "INSERT INTO `dish_info` * values ($record_type,$gerecht_id,$user_id,$date,$num_field,$tekst_field)";
+   
+    public function addFavorite($dish_id,$user_id){
+        $existing_data = $this->selectDischInfo($dish_id,"F",$user_id);
 
-            echo "id before: ".mysqli_insert_id($this->connection);
+        if(count($existing_data) > 0){
+            $this->deleteDishInfo($existing_data[0]["id"]);
+            return ;
+        }
 
-            $result = mysqli_query($this->connection,$sql);
-            
-            if($result == true){
-                echo "id after: " . mysqli_insert_id($this->connection);
-            }
-    }    //input B: preperation step, O: comment, F: favorite or W: rating
+        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id) values ('F',$dish_id,$user_id)";
+        $result = mysqli_query($this->connection,$sql);      
+    }   
+    
+    public function addScore($dish_id,$score,$user_id = null){
+        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id,nummeriek_veld) values ('W',$dish_id,$user_id,$score)";
+        
+        $existing_data = $this->selectDischInfo($dish_id,"W",$user_id);
+        
+        if($user_id != null && count($existing_data) > 0){
+            $sql = "UPDATE gerecht_info SET nummeriek_veld = $score where id = " . $existing_data[0]["id"];
+        }
 
-    public function deleteDishInfo(){
-        //????????????????????????????????????
+        $result = mysqli_query($this->connection,$sql);      
+    } 
+
+    public function deleteDishInfo($dishInfo_id){
+        $sql = "DELETE FROM gerecht_info WHERE id = $dishInfo_id";
+        $result = mysqli_query($this->connection,$sql);
     }
 
-    public function selectDischInfo($gerecht_id,$rec_type = null){
+    public function selectDischInfo($dish_id,$rec_type = null,$user_id = null){
         
-        if($rec_type == null){
-            $sql = "SELECT * FROM gerecht_info WHERE gerecht_id = $gerecht_id";
+        $sql = "SELECT * FROM gerecht_info WHERE gerecht_id = $dish_id";
+
+        if($rec_type != null){
+            $sql .= " and record_type = '$rec_type'";
         }
-        else{
-            $sql = "SELECT * FROM gerecht_info WHERE gerecht_id = $gerecht_id and record_type = '$rec_type'";
+        if($user_id != null){
+            $sql .= " and user_id = '$user_id'";
+        }
+      
+        $result = mysqli_query($this->connection,$sql);
+
+        if(mysqli_num_rows($result) == 0){
+            return [];
         }
 
-       
-        
-        $result = mysqli_query($this->connection,$sql);
         $gerecht_infoData = [];
         $userData = [];
 
-        if(mysqli_num_rows($result) > 0){
-            while($gerecht_infoRow = mysqli_fetch_array($result, MYSQLI_ASSOC) ){
-                if($gerecht_infoRow["user_id"] != ""){
-                    $userData = $this->getUser($gerecht_infoRow["user_id"]);
-                }          
-                $gerecht_infoData[] = $gerecht_infoRow + $userData;
-            }
-        }else{
-            echo "error dish_info result empty: ";
+        while($gerecht_infoRow = mysqli_fetch_array($result, MYSQLI_ASSOC) ){
+            if($gerecht_infoRow["user_id"] != ""){
+                $userData = $this->getUser($gerecht_infoRow["user_id"]);
+            }          
+            $gerecht_infoData[] = $gerecht_infoRow + $userData;
         }
-
 
         return $gerecht_infoData;
     }
