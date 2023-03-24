@@ -21,8 +21,8 @@ class ingredient{
         return $ingredientData + $artData;
     }*/
 
-    public function selectingredients($gerecht_id){
-        $sql = "SELECT * FROM ingredient WHERE gerecht_id = $gerecht_id";
+    public function selectingredients($dish_id){
+        $sql = "SELECT * FROM ingredient WHERE gerecht_id = $dish_id";
         
         $result = mysqli_query($this->connection,$sql);
         $ingredientData = [];

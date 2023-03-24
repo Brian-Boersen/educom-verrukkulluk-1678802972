@@ -41,7 +41,7 @@ class dish {
             $bareDishData = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                 
-            $dish_data["id"] = $bareDishData["id"];
+            $dish_data["id"] = $dish_id;
             $dish_data["keuken"] = $this->getKitchen($bareDishData["keuken_id"]);
             $dish_data["type"] = $this->getType($bareDishData["type_id"]);
             $dish_data["user"] = $this->getUser($bareDishData["user_id"]);
@@ -50,9 +50,9 @@ class dish {
             $dish_data["korte_omschrijving"] = $bareDishData["korte_omschrijving"];
             $dish_data["lange_omschrijving"] = $bareDishData["lange_omschrijving"];
             $dish_data["afbeelding"] = $bareDishData["afbeelding"];
-            $dish_data["ingredienten"] = $this->getIngredients($bareDishData["keuken_id"]);
-            $dish_data["favoriet"] = $this->getFavorite($bareDishData["id"]);
-            $dish_data["waardering"] = $this->getRating($bareDishData["id"]);
+            $dish_data["ingredienten"] = $this->getIngredients($dish_id);
+            $dish_data["favoriet"] = $this->getFavorite($dish_id);
+            $dish_data["waardering"] = $this->getRating($dish_id);
             $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
             $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
             $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
@@ -88,7 +88,7 @@ class dish {
         $result = mysqli_query($this->connection,$sql);
         $bareDishData = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        $dish_data["id"] = $bareDishData["id"];
+        $dish_data["id"] = $dish_id;
         $dish_data["keuken"] = $this->getKitchen($bareDishData["keuken_id"]);
         $dish_data["type"] = $this->getType($bareDishData["type_id"]);
         $dish_data["user"] = $this->getUser($bareDishData["user_id"]);
@@ -97,11 +97,11 @@ class dish {
         $dish_data["korte_omschrijving"] = $bareDishData["korte_omschrijving"];
         $dish_data["lange_omschrijving"] = $bareDishData["lange_omschrijving"];
         $dish_data["afbeelding"] = $bareDishData["afbeelding"];
-        $dish_data["ingredienten"] = $this->getIngredients($bareDishData["keuken_id"]);
-        $dish_data["favoriet"] = $this->getFavorite($bareDishData["id"]);
-        $dish_data["waardering"] = $this->getRating($bareDishData["id"]);
-        $dish_data["bereidingswijze"] = $this->getPreperationSteps($bareDishData["id"]);
-        $dish_data["opmerkingen"] = $this->getComments($bareDishData["id"]);
+        $dish_data["ingredienten"] = $this->getIngredients($dish_id);
+        $dish_data["favoriet"] = $this->getFavorite($dish_id);
+        $dish_data["waardering"] = $this->getRating($dish_id);
+        $dish_data["bereidingswijze"] = $this->getPreperationSteps($dish_id);
+        $dish_data["opmerkingen"] = $this->getComments($dish_id);
         $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
         $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
         $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
@@ -157,7 +157,9 @@ class dish {
             $totalRating += $rating["nummeriek_veld"];
         }
 
+        if($totalRating > 0){
         $everageRating = $totalRating/$ratingCount;
+        }
 
         return round($everageRating,1);
     }
