@@ -39,15 +39,12 @@ class dish_info{
         $result = mysqli_query($this->connection,$sql);
     }
 
-    public function selectDischInfo($dish_id,$rec_type = null,$user_id = null){
+    public function selectDischInfo($dish_id,$rec_type = null){
         
         $sql = "SELECT * FROM gerecht_info WHERE gerecht_id = $dish_id";
 
         if($rec_type != null){
             $sql .= " and record_type = '$rec_type'";
-        }
-        if($user_id != null){
-            $sql .= " and user_id = '$user_id'";
         }
       
         $result = mysqli_query($this->connection,$sql);
@@ -60,7 +57,7 @@ class dish_info{
         $userData = [];
 
         while($gerecht_infoRow = mysqli_fetch_array($result, MYSQLI_ASSOC) ){
-            if($gerecht_infoRow["user_id"] != ""){
+            if($gerecht_infoRow["user_id"] != "" ){
                 $userData = $this->getUser($gerecht_infoRow["user_id"]);
             }          
             $gerecht_infoData[] = $gerecht_infoRow + $userData;

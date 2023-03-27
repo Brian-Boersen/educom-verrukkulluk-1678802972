@@ -67,7 +67,7 @@ switch($action) {
         }
 
         case "detail": {
-            $data = $dish->selectDish(1);
+            $data = $dish->selectDishes(1);
             $template = 'detail.html.twig';
             $title = "detail pagina";
             break;

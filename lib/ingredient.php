@@ -10,17 +10,6 @@ class ingredient{
         $this->art = new article($connection);
     }
 
-   /* public function selectIngredient($ingredient_id){
-        $sql = "SELECT * FROM ingredient WHERE id = $ingredient_id";
-        
-        $result = mysqli_query($this->connection,$sql);
-        $ingredientData = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-        $artData = $this->art->selectArticle($ingredientData["artikel_id"]);
-        
-        return $ingredientData + $artData;
-    }*/
-
     public function selectingredients($dish_id){
         $sql = "SELECT * FROM ingredient WHERE gerecht_id = $dish_id";
         
