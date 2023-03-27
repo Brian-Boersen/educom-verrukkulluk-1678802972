@@ -60,7 +60,7 @@ $action = isset($_GET["action"]) ? $_GET["action"] : "homepage";
 switch($action) {
 
         case "homepage": {
-            $data = $dish->selectDishes([1,2,3,4]);
+            $data = $dish->selectDishes();
             $template = 'homepage.html.twig';
             $title = "homepage";
             break;

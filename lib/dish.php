@@ -15,53 +15,42 @@ class dish {
         $this->dish_info = new dish_info($connection);
     }
     
-    public function selectDishes($dish_ids = []){
+    public function selectDishes($dish_id = null){
         $dishes = [];
-        $dish_data = [
-            "id" => "",
-            "keuken" => [],
-            "type" => [],
-            "user" => [],
-            "datum_toegevoegd" => "",
-            "titel" => "",
-            "korte_omschrijving" => "",
-            "lange_omschrijving" => "",
-            "afbeelding" => "",
-            "ingredienten" => [],
-            "favoriet" => [],
-            "waardering" => [],
-            "bereidingswijze" => [],
-            "opmerkingen" => [],
-            "totaalprijs" => "",
-            "calorieen" => "",
-            "gemiddelde_waardering" => ""
-        ];
+        $sql = "SELECT * FROM gerecht";
+
+        if(!is_null($dish_id)){
+            $sql .= " where id = $dish_id";
+        }
+
+        $result = mysqli_query($this->connection,$sql);
+
+        $ingredients = [];
+        $ratings = [];
         
-        foreach ($dish_ids as $dish_id){
-            $sql = "SELECT * FROM gerecht where id = $dish_id";
-            $result = mysqli_query($this->connection,$sql);
-            $bareDishData = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        while ($current_dish_id = mysqli_fetch_array($result, MYSQLI_ASSOC)){    
+            $ingredients = $this->getIngredients($current_dish_id["id"]);
+            $ratings = $this->getRating($current_dish_id["id"]);
 
-                
-            $dish_data["id"] = $dish_id;
-            $dish_data["keuken"] = $this->getKitchen($bareDishData["keuken_id"]);
-            $dish_data["type"] = $this->getType($bareDishData["type_id"]);
-            $dish_data["user"] = $this->getUser($bareDishData["user_id"]);
-            $dish_data["datum_toegevoegd"] = $bareDishData["datum_toegevoegd"];
-            $dish_data["titel"] = $bareDishData["titel"];
-            $dish_data["korte_omschrijving"] = $bareDishData["korte_omschrijving"];
-            $dish_data["lange_omschrijving"] = $bareDishData["lange_omschrijving"];
-            $dish_data["afbeelding"] = $bareDishData["afbeelding"];
-            $dish_data["ingredienten"] = $this->getIngredients($dish_id);
-            $dish_data["favoriet"] = $this->getFavorite($dish_id);
-            $dish_data["waardering"] = $this->getRating($dish_id);
-            $dish_data["bereidingswijze"] = $this->getPreperationSteps($dish_id);
-            $dish_data["opmerkingen"] = $this->getComments($dish_id);
-            $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
-            $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
-            $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
-
-            $dishes[] = $dish_data;
+            $dishes[] = [
+                "id" => $current_dish_id["id"],
+                "keuken" => $this->getKitchen($current_dish_id["keuken_id"]),
+                "type" => $this->getType($current_dish_id["type_id"]),
+                "user" => $this->getUser($current_dish_id["user_id"]),
+                "datum_toegevoegd" => $current_dish_id["datum_toegevoegd"],
+                "titel" => $current_dish_id["titel"],
+                "korte_omschrijving" => $current_dish_id["korte_omschrijving"],
+                "lange_omschrijving" => $current_dish_id["lange_omschrijving"],
+                "afbeelding" => $current_dish_id["afbeelding"],
+                "ingredienten" =>  $ingredients,
+                "favoriet" => $this->getFavorite($current_dish_id["id"]),
+                "waardering" => $ratings,
+                "bereidingswijze" => $this->getPreperationSteps($current_dish_id["id"]),
+                "opmerkingen" => $this->getComments($current_dish_id["id"]),
+                "totaalprijs" => $this->calculateTotalPrice($ingredients),
+                "calorieen" => $this->calculateCalories($ingredients),
+                "gemiddelde_waardering" => $this->calculateEverageRating($ratings)
+            ];
         }
 
         return $dishes;

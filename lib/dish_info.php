@@ -9,30 +9,21 @@ class dish_info{
         $this->user = new user($connection);
     }
 
-   
     public function addFavorite($dish_id,$user_id){
-        $existing_data = $this->selectDischInfo($dish_id,"F",$user_id);
-
-        if(count($existing_data) > 0){
-            $this->deleteDishInfo($existing_data[0]["id"]);
-            return ;
-        }
-
         $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id) values ('F',$dish_id,$user_id)";
         $result = mysqli_query($this->connection,$sql);      
     }   
     
-    public function addRating($dish_id,$rating,$user_id = null){
-        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,user_id,nummeriek_veld) values ('W',$dish_id,$user_id,$rating)";
-        
-        $existing_data = $this->selectDischInfo($dish_id,"W",$user_id);
-        
-        if($user_id != null && count($existing_data) > 0){
-            $sql = "UPDATE gerecht_info SET nummeriek_veld = $rating where id = " . $existing_data[0]["id"];
-        }
+    public function addRating($dish_id,$rating){
+        $sql = "INSERT INTO `gerecht_info` (record_type,gerecht_id,nummeriek_veld) values ('W',$dish_id,$rating)";
 
         $result = mysqli_query($this->connection,$sql);      
     } 
+
+    public function deleteFavorite($dishInfo_id, $user_id){
+        $sql = "DELETE FROM gerecht_info WHERE id = $dishInfo_id and user_id = $user_id";
+        $result = mysqli_query($this->connection,$sql);
+    }
 
     public function deleteDishInfo($dishInfo_id){
         $sql = "DELETE FROM gerecht_info WHERE id = $dishInfo_id";
