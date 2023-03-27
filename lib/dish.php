@@ -29,12 +29,14 @@ class dish {
             "afbeelding" => "",
             "ingredienten" => [],
             "favoriet" => [],
-            "waarderingen" => [],
+            "waardering" => [],
+            "bereidingswijze" => [],
+            "opmerkingen" => [],
             "totaalprijs" => "",
             "calorieen" => "",
             "gemiddelde_waardering" => ""
         ];
-
+        
         foreach ($dish_ids as $dish_id){
             $sql = "SELECT * FROM gerecht where id = $dish_id";
             $result = mysqli_query($this->connection,$sql);
@@ -53,6 +55,8 @@ class dish {
             $dish_data["ingredienten"] = $this->getIngredients($dish_id);
             $dish_data["favoriet"] = $this->getFavorite($dish_id);
             $dish_data["waardering"] = $this->getRating($dish_id);
+            $dish_data["bereidingswijze"] = $this->getPreperationSteps($dish_id);
+            $dish_data["opmerkingen"] = $this->getComments($dish_id);
             $dish_data["totaalprijs"] = $this->calculateTotalPrice($dish_data["ingredienten"]);
             $dish_data["calorieen"] = $this->calculateCalories($dish_data["ingredienten"]);
             $dish_data["gemiddelde_waardering"] = $this->calculateEverageRating($dish_data["waardering"]);
@@ -63,7 +67,7 @@ class dish {
         return $dishes;
     }
 
-    public function selectDish($dish_id){
+    /*public function selectDish($dish_id){
         $dish_data = [
             "id" => "",
             "keuken" => [],
@@ -108,6 +112,7 @@ class dish {
 
         return $dish_data;
     }
+    */
 
     public function determineFavorite($user_id, $dish_id){
         $isFavorite = false;
