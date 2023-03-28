@@ -1,42 +1,39 @@
 {# Opnemen van de "Main" file #}
 {% extends "main.html.twig" %}
 
-{% block header %}
-<img src="assets/img/logo-v2.png"/>
+{#
+{% block linking %}
+<link rel="stylesheet" type="text/css" href="assets/css/homepage.css" />
 {% endblock %}
+#}
+{# #}
+{% block header %}
 
-
+{% endblock %}
 {# nu de block content op in de main pagina vullen #}
 {% block content %}
-    {# Dit is commentaar #}
 
-    {# Print #}
-    <h1>Heading #1</h1>
-    <h2>Heading #2</h2>
-    <h3>Heading #3 t/m 5</h3>
+    {% for record in data %}
+        <div class="col-12 col-md-6 dishes">
+            <img class="dish_img" src="{{ record.afbeelding }}">
 
-    <h4>Dit is de template {{ title }}</h4>
+            <div class="dish_titel" {{ record.titel }} ingredienten: {{ record.ingredienten|length }}
 
-{# Loop #}
+            <div class="short_description"><p>{{record.korte_omschrijving}}</p></div>
+        </div>
+    {% endfor %}
+
     <ul>
     {% for record in data %}
-        <li>
-            <img src="{{ record.afbeelding }}" style="width: 100px; heigfht: 100px;">
+    
+        <li class="">
+            <img class="" src="{{ record.afbeelding }}">
 
             {{ record.titel }} ingredienten: {{ record.ingredienten|length }}
             {# sub-loop #}
-            <ul>
-                {% for ingr in record.ingredienten %}
-                    <li>
-                        <span {% if ingr.id < 2 %}style='color: #F00'{% endif %}>ingredient: {{  ingr.naam }}</span>
 
-                        {# if #}
-                        {%  if ingr.id == 3 %}
-                            <strong>Dit is ID 3!</strong>
-                        {%  endif  %}
-                    </li>
-                {% endfor %}
-            </ul>
+            <p>{{record.korte_omschrijving}}</p>
+
         </li>
     {% endfor %}
     <ul>
