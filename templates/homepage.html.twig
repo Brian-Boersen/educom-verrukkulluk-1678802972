@@ -24,7 +24,9 @@
                 </div>
 
                 <div class="dishes_bottom_row">
-                    <button type="disch_dishplay_button"><h3>Smullen!<h3></button> 
+                    <form>
+                        <button type="submit" formmethod="get" formaction="index.php?gerecht_id=3&action=detail" class="disch_dishplay_button"><h3>Smullen!<h3></button> 
+                    </form>                   
                     <div class="bottom_right">
                         <p>cal: {{record.calorieen}}</p>
                         <p>prijs: {{record.totaalprijs}}</p>

@@ -19,13 +19,13 @@
 
     <div class="row" id="head">
         <div class="col-md-12">
-        <a href="" > <img class="brand_logo" src="assets/img/logo-v2.png"/></a>
-        <div ><img class="menu_logo" src="assets/img/menu-bar.png"/></div>
-        <textarea class="search_bar">Zoekken</textarea>
+            <a href="" > <img class="brand_logo" src="assets/img/logo-v2.png"/></a>
+            <div ><img class="menu_logo" src="assets/img/menu-bar.png"/></div>
+            <textarea class="search_bar">Zoekken</textarea>
+            
+            {% block header %}
         
-        {% block header %}
-       
-        {% endblock %}   
+            {% endblock %}   
         </div>
     </div>
 
@@ -33,15 +33,29 @@
         <div class="col-md-4">
             <div class="side_info"> 
                 <div class="sidebar_agenda mb-5">   
-                    <h1>Agenda</h1>
-                    <i class="fa fa-calendar"></i> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a><br>
-                    <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
+                    <img src="assets\img\verrukkulluk-agenda.png">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-calendar fa-6x"></i> 
+                        </div>
+                        <div class="col-9">
+                            <h3>vegatarish koken</h3>
+                            <p>een workshop waar je alles leert over vegatarish kooken, onder leiding van tien<p>
+                        </div>
+                    </div>
+                            <br> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a>
+                            <br> <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
                 </div> 
 
                 <div class="sidebar_login">   
-                    <h1>Login</h1>
-                    <i class="fa fa-calendar"></i> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a><br>
-                    <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
+                    <img src="assets\img\verrukkulluk-login.png">
+                    <form>
+                        Email<br>
+                        <textarea class="search_bar">Zoekken</textarea><br>
+                        Wachtwoord<br>
+                        <textarea class="search_bar">Zoekken</textarea><br>
+                        <button type="submit" formmethod="get" formaction="index.php?gerecht_id=3&action=detail" class=""><h3>login!<h3></button> 
+                    </form>
                 </div>              
             </div>
 

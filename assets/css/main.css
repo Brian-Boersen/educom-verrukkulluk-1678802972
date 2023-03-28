@@ -98,11 +98,14 @@ html, body {
     margin-right: var(--box-margins);
 }
 
-.side_info h1{
-    text-align: center;
+.side_info img{
+    display: block;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .sidebar_agenda{
+    text-align: left;
     height: 600px;
     background-color: var(--lighter-green);
 }
