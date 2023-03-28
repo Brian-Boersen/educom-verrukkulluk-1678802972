@@ -27,6 +27,9 @@
     --white: #FFF;
     --black: #000;
 
+    --text-left-marging-padding: 10px;
+    --box-margins: 10%;
+
 }
 
 
@@ -89,30 +92,93 @@ html, body {
 
     margin-top: 1%;
 }
+/*side bar--------------------------------------------*/
+.side_info{
+    margin-left: var(--box-margins);
+    margin-right: var(--box-margins);
+}
+
+.side_info h1{
+    text-align: center;
+}
+
+.sidebar_agenda{
+    height: 600px;
+    background-color: var(--lighter-green);
+}
+
+.sidebar_login{
+    height: 300px;
+    background-color: var(--darker-red);
+}
 
 /* displaying dishes -----------------------------------------------------------------------------------------------------------------------*/
-.dishes{
-    display: inline-block;
-    
-    width: 40%;
-    height: 800px;
 
-    margin-left: 5%;
-    margin-bottom: 5%;
-    
+.dishes_content{
+    /*
+    display: grid;
+    display: -ms-grid;
+    display: -moz-grid;
 
-    background-color: #95b82d;
+    grid-template-columns: 50% 50%;
+    */
 }
 
-.dishes img{
-    width: 100%;
+.small_dish_dishplay{
+    width: 90%;
+    margin-bottom: var(--box-margins);
+    background-color: var(--lighter-red);
+
 }
 
-.short_description{
+.dishes_img{
+    display: flex;
+    height: 250px;
+    /*width: 100%;*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.dishes_top_row{
+    height: 50px;
+    padding-left: var(--text-left-marging-padding);
+
+    background-color: var(--darker-orange);
+}
+
+.dishes_short_description{
     height: 100px;
     overflow: hidden;
 
-    background-color: #dc3439;
+    padding-left: var(--text-left-marging-padding);
+
+    margin-bottom: 50px;
+
+    background-color: var(--darker-red);
 }
+
+.dishes_bottom_row{
+    height: 60px;
+
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.bottom_right{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+
+.bottom_right p{
+    margin-top: 10px;
+    margin-right: var(--text-left-marging-padding);
+}
+
+
 
 

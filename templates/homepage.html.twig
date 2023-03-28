@@ -1,42 +1,41 @@
 {# Opnemen van de "Main" file #}
 {% extends "main.html.twig" %}
 
-{#
-{% block linking %}
-<link rel="stylesheet" type="text/css" href="assets/css/homepage.css" />
-{% endblock %}
-#}
-{# #}
 {% block header %}
 
 {% endblock %}
 {# nu de block content op in de main pagina vullen #}
 {% block content %}
 
+    <div class="row"> 
     {% for record in data %}
-        <div class="col-12 col-md-6 dishes">
-            <img class="dish_img" src="{{ record.afbeelding }}">
+        <div class="col-lg-12 col-xl-6 dishes_content">
+            <div class="small_dish_dishplay">
+                <div class="dishes_img">
+                <img src="{{ record.afbeelding }}">
+                </div>
 
-            <div class="dish_titel" {{ record.titel }} ingredienten: {{ record.ingredienten|length }}
+                <div class="dishes_top_row">
+                    {{ record.titel }} ingredienten: {{ record.ingredienten|length }} 
+                    sterren: {{ record.gemiddelde_waardering }}
+                </div>
 
-            <div class="short_description"><p>{{record.korte_omschrijving}}</p></div>
+                <div class="dishes_short_description"><p>{{record.korte_omschrijving}}</p>
+                </div>
+
+                <div class="dishes_bottom_row">
+                    <button type="disch_dishplay_button"><h3>Smullen!<h3></button> 
+                    <div class="bottom_right">
+                        <p>cal: {{record.calorieen}}</p>
+                        <p>prijs: {{record.totaalprijs}}</p>
+                        <p>pers: 4</p>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endfor %}
+ </div>
 
-    <ul>
-    {% for record in data %}
-    
-        <li class="">
-            <img class="" src="{{ record.afbeelding }}">
-
-            {{ record.titel }} ingredienten: {{ record.ingredienten|length }}
-            {# sub-loop #}
-
-            <p>{{record.korte_omschrijving}}</p>
-
-        </li>
-    {% endfor %}
-    <ul>
      {# Dump #}
        <pre>
         {{ dump(data) }}
