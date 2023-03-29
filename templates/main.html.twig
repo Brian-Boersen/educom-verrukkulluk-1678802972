@@ -18,15 +18,19 @@
     <script type="text/javascript" language="javascript" src="assets/vegas/vegas.js"></script>
     <script type="text/javascript" language="javascript" src="assets/js/img_slide.js"></script>
     
+    
 </html>
 <body>
 <div class="container-fluid">
-
     <div class="row" id="head">
         <div class="col-md-12" id="head_background_img">
             <a href="" > <img class="brand_logo" src="assets/img/logo-v2.png"/></a>
-            <div ><img class="menu_logo" src="assets/img/menu-bar.png"/></div>
-            <input type="text" placeholder="Zoekken" class="search_bar">
+            <div > <img class="menu_logo" src="assets/img/menu-bar.png"/> </div>
+            
+            <div class="search_bar">
+                <i class="fa fa-search" style="color: #dc3439;"></i>
+                <input type="text" placeholder="Zoekken">
+            </div>
             
             {% block header %}
         
@@ -38,9 +42,9 @@
         <div class="col-md-4">
             <div class="side_info"> 
                 <div class="sidebar_agenda mb-5">  
-
+                    
                     <img src="assets\img\verrukkulluk-agenda.png">
-
+                    
                     {% for i in 1..5 %}
                         <div class="row">
                             <div class="col-12 col-lg-3 pl-4">
