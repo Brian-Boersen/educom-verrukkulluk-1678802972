@@ -53,6 +53,7 @@ h3, h4, h5 {
 
 
 /** HTML / BODY **/
+/*head -----------------------------------------------*/
 html, body {
     font-family: "Helvetica Neue", Arial, SansSerif;
     font-size: 16px;
@@ -65,6 +66,10 @@ html, body {
     display: flexbox;
     
     background-color: var(--darker-green);
+}
+
+#head_background_img{
+    width: 100%;    
 }
 
 .brand_logo{
@@ -165,7 +170,9 @@ html, body {
 
     grid-template-columns: 50% 50%;
     */
+    
 }
+
 
 .small_dish_dishplay{
     width: 90%;

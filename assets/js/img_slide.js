@@ -10,5 +10,4 @@ $(DocumentType).ready(function() {
         ],
         transition: 'fade'
     })
-
 })
