@@ -32,29 +32,51 @@
     <div class="row">
         <div class="col-md-4">
             <div class="side_info"> 
-                <div class="sidebar_agenda mb-5">   
+                <div class="sidebar_agenda mb-5">  
+
                     <img src="assets\img\verrukkulluk-agenda.png">
-                    <div class="row">
-                        <div class="col-3">
-                            <i class="fa fa-calendar fa-6x"></i> 
+
+                    {% for i in 1..5 %}
+                        <div class="row">
+                            <div class="col-12 col-lg-3 pl-4">
+                                <i class="fa fa-calendar fa-4x"></i> 
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <h3>vegatarish koken</h3>
+                                <p>een workshop waar je alles leert over vegatarish kooken.<p>
+                            </div>
                         </div>
-                        <div class="col-9">
-                            <h3>vegatarish koken</h3>
-                            <p>een workshop waar je alles leert over vegatarish kooken, onder leiding van tien<p>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    {#
                             <br> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a>
                             <br> <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
+                    #}  
                 </div> 
 
                 <div class="sidebar_login">   
                     <img src="assets\img\verrukkulluk-login.png">
                     <form>
-                        Email<br>
-                        <textarea class="search_bar">Zoekken</textarea><br>
-                        Wachtwoord<br>
-                        <textarea class="search_bar">Zoekken</textarea><br>
-                        <button type="submit" formmethod="get" formaction="index.php?gerecht_id=3&action=detail" class=""><h3>login!<h3></button> 
+                    <div class="row">
+                            <div class="col-12">
+                                <h6>Email<h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" class="search_bar" value="email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Wachtwoord<h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" class="search_bar" value="wachtwoord">
+                            </div>
+                        </div>
+                        <button type="submit" formmethod="get" formaction="index.php?gerecht_id=3&action=detail" class=""><h3>login<h3></button> 
                     </form>
                 </div>              
             </div>

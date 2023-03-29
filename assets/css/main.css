@@ -29,12 +29,13 @@
 
     --text-left-marging-padding: 10px;
     --box-margins: 10%;
+    --login_margin: 10%;
 
 }
 
 
 /** HEADING **/
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     font-family: var(--heading) !important;
 }
 
@@ -92,6 +93,7 @@ html, body {
 
     margin-top: 1%;
 }
+
 /*side bar--------------------------------------------*/
 .side_info{
     margin-left: var(--box-margins);
@@ -100,20 +102,58 @@ html, body {
 
 .side_info img{
     display: block;
-    width: 50%;
-    margin-left: 25%;
+    width: 40%;
+    margin-left: 30%;
 }
 
 .sidebar_agenda{
+    overflow: hidden;
     text-align: left;
-    height: 600px;
+    padding: 5%;
+    height: 700px;
     background-color: var(--lighter-green);
 }
 
 .sidebar_login{
-    height: 300px;
+    height: 320px;
+    text-align: left;
+
+    color: var(--kahki);
     background-color: var(--darker-red);
 }
+
+.sidebar_login input{
+    height: 30px;
+    width: 80%;
+    float: left;
+
+    margin-left: var(--login_margin);
+    margin-bottom: 4%;
+}
+
+.sidebar_login h6{
+    margin-left: var(--login_margin);
+}
+
+.sidebar_login button{
+    width: 50%;
+
+    margin-top: 5%;
+    margin-left: 25%;
+
+    border-radius: 1.5em;
+
+    color: var(--kahki);
+
+    border-color: var(--lighter-orange);
+    background-color: var(--lighter-orange);
+}
+
+.sidebar_login button:hover{
+    border-color: var(--darker-orange);
+    background-color: var(--darker-orange);
+}
+
 
 /* displaying dishes -----------------------------------------------------------------------------------------------------------------------*/
 
