@@ -13,8 +13,8 @@
                     <img src="{{data.0.afbeelding}}" alt="404">
                 </div> 
 
-                <div class="col-md-7">
-                    <div class="dish_details">
+                <div class="col-md-7 dish_details">
+                    <div class="">
                         <div class="dish_top_info">
                                 <p><i class="fa fa-male"></i> 4</p>
                                 <p><i class="fa fa-euro-sign"></i> {{data.0.totaalprijs}},-</p>
@@ -26,32 +26,113 @@
                                 <h2>{{ data.0.titel }}</h2>
                             </div>
                             <div class="col-4">
-                                <p>ingredienten: {{ data.0.ingredienten|length }} sterren: {{ data.0.gemiddelde_waardering }}<p>
+                                <p>sterren: {{ data.0.gemiddelde_waardering }}<p>
                             </div>
                         </div>
-
-                        <div class="col-12">
-                            <h6>Keuken</h6> {{data.0.keuken.omschrijving}}
-                            <h6>Type</h6> {{data.0.type.omschrijving}}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row kitchen_type_bar">
+                                    <div class="col-8">
+                                        <h4>Keuken</h4> <p>{{data.0.keuken.omschrijving}}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <h4>Type</h4> <p>{{data.0.type.omschrijving}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class=""><!--dishes_short_description">-->
+                        <div class="dish_long_description"><!--dishes_short_description">-->
                             <p>{{data.0.lange_omschrijving}}</p>
                         </div>
 
-                        <div class="dishes_bottom_row">
-                            <div class="dish_dishplay_button">
-                                <a href="http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id={{data.0.id}}&action=detail" >
-                                    <h3>Op lijst</h3>
-                                </a>
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="add_dish_to_cart_button">
+                                    <a href="http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id={{data.0.id}}&action=detail" >
+                                        <h3>Op lijst</h3>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="favorite_button">
-                                <i class="fa fa-heart fa-3x"></i>
+                            <div class="col-3">
+                                <div class="favorite_button">
+                                    <i class="fa fa-heart fa-2x"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>            
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="coll-12">
+
+            <div class="toggle_buttons">
+                <button class="ingredient_toggle_button button_to_front"><h3>Ingredienten</h3></button>
+                <button class="steps_toggle_button"><h3>Bereiding</h3></button>
+                <button class="comments_toggle_button"><h3>Comments</h3></button>
+            </div>
+
+            <div class="detail_tabs">
+                <div class="tab_content">
+                    
+                    <div class="ingredients_tab">
+                        <ul>
+                            {% for ingredient in data.0.ingredienten %}
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    </div>
+                                    <div class="col-10">
+                                        <li><h3>{{ ingredient.naam }}</h3></li>
+                                        <li>{{ ingredient.omschrijving }}</li>
+                                        <li><h4 style="display: inline-block;">Hoeveelheid: </h4> {{ingredient.aantal}} {{ ingredient.eenheid }}.</li>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="steps_tab hide_tab">
+                        <h2>Bereiding</h2>
+                        <ul>
+                            {% for ingredient in data.0.ingredienten %}
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    </div>
+                                    <div class="col-10">
+                                        <li><h3>{{ ingredient.naam }}<h2></li>
+                                        <li>{{ ingredient.omschrijving }}</li>
+                                        <li><h4>Hoeveelheid: </h4>{{ingredient.aantal}}{{ ingredient.eenheid }}.</li>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="comments_tab hide_tab">
+                        <h2>comments</h2>
+                        <ul>
+                            {% for ingredient in data.0.ingredienten %}
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    </div>
+                                    <div class="col-10">
+                                        <li><h3>{{ ingredient.naam }}<h2></li>
+                                        <li>{{ ingredient.omschrijving }}</li>
+                                        <li><h4>Hoeveelheid: </h4>{{ingredient.aantal}}{{ ingredient.eenheid }}.</li>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scroll_indicator">
+                    <i class="fa fa-chevron-down fa-2x"></i>
+                </div>
+            </div>
+
         </div>
     </div>
 
