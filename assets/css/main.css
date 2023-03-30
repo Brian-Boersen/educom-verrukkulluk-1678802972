@@ -326,10 +326,6 @@ html, body {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
 }
 
-.detail_tabs h1,h2,h3,h4,i{
-    color: var(--darker-green);
-}
-
 .tab_content{
     overflow-y: auto;
     overflow-x:hidden;
@@ -342,6 +338,10 @@ html, body {
 
 .tab_content::-webkit-scrollbar {
     display: none;
+}
+
+.detail_tabs h3, .detail_tabs h4, .detail_tabs i{
+    color: var(--darker-green);
 }
 
 .scroll_indicator{
@@ -363,6 +363,7 @@ html, body {
     outline: none;
 
     background-color: var(--white);
+    color: var(--darker-green);
 
     -webkit-box-shadow: 5px -5px 5px 0px rgba(0, 0, 0, 0.1),
                         -5px -5px 5px 0px rgba(0, 0, 0, 0.1);
