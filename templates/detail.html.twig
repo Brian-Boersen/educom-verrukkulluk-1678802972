@@ -1,5 +1,62 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
-<h1>Hallo Bram</h1>
+
 {% endblock %}
+
+{%  block content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="row detail_box">
+                <div class="col-md-5 dish_img">
+                    <img src="{{data.0.afbeelding}}" alt="404">
+                </div> 
+
+                <div class="col-md-7">
+                    <div class="dish_details">
+                        <div class="dish_top_info">
+                                <p><i class="fa fa-male"></i> 4</p>
+                                <p><i class="fa fa-euro-sign"></i> {{data.0.totaalprijs}},-</p>
+                                <p><i class="fa fa-fire"></i> {{data.0.calorieen}}</p>                         
+                        </div>
+
+                        <div class="row dish_title_row"> <!-- dishes_top_row">-->
+                            <div class="col-8 ">
+                                <h2>{{ data.0.titel }}</h2>
+                            </div>
+                            <div class="col-4">
+                                <p>ingredienten: {{ data.0.ingredienten|length }} sterren: {{ data.0.gemiddelde_waardering }}<p>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <h6>Keuken</h6> {{data.0.keuken.omschrijving}}
+                            <h6>Type</h6> {{data.0.type.omschrijving}}
+                        </div>
+
+                        <div class=""><!--dishes_short_description">-->
+                            <p>{{data.0.lange_omschrijving}}</p>
+                        </div>
+
+                        <div class="dishes_bottom_row">
+                            <div class="dish_dishplay_button">
+                                <a href="http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id={{data.0.id}}&action=detail" >
+                                    <h3>Op lijst</h3>
+                                </a>
+                            </div>
+                            <div class="favorite_button">
+                                <i class="fa fa-heart fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+    <pre>
+        {{ dump(data) }}
+       </pre>
+
+{%  endblock %}

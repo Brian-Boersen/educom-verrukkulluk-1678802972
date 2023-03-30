@@ -44,9 +44,7 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 /******************************/
 
-/// Next step, iets met je data doen. Ophalen of zo
-//$data = $dish->selectDish(1);
-
+//Next step, iets met je data doen. Ophalen of zo
 
 /*
 URL:
@@ -67,7 +65,7 @@ switch($action) {
         }
 
         case "detail": {
-            $data = $dish->selectDishes(1);
+            $data = $dish->selectDishes($gerecht_id);
             $template = 'detail.html.twig';
             $title = "detail pagina";
             break;

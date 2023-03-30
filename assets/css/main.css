@@ -51,11 +51,6 @@ h3, h4, h5 {
     font-size: 32px;
 }
 
-.shadow{
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
-}
 /** HTML / BODY **/
 /*head -----------------------------------------------*/
 html, body {
@@ -183,6 +178,8 @@ html, body {
 
     color: var(--kahki);
 
+    border: none;
+
     border-color: var(--lighter-orange);
     background-color: var(--lighter-orange);
 }
@@ -192,8 +189,57 @@ html, body {
     background-color: var(--darker-orange);
 }
 
+/*detail page content ------------------------------------------------------------------*/
+.detail_box{
+    margin-right: calc(var(--box-margins)*1.3);
+    margin-bottom: var(--box-margins);
 
-/* displaying dishes -----------------------------------------------------------------------------------------------------------------------*/
+    height: 500px;
+
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.dish_img{
+    display: flex;
+    height: 100%;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    justify-content: center;
+}
+
+.dish_details{
+    padding-left: 5%;
+}
+
+.dish_top_info{
+    display: flex;
+    align-items: center;
+    
+    margin-top: 20px;
+}
+
+.dish_top_info p{
+    margin-right: var(--text-left-marging-padding);
+}
+
+.dish_top_info i{
+    color: var(--lighter-red);
+}
+
+.dish_title_row{
+    width: 100%;
+    height: 60px;
+}
+
+.dish_title_row h2{
+    color: var(--darker-green);
+}
+
+/* displaying multiple dishes ------------------------------------------------------------------------------------------------------------*/
 
 .dishes_content{
    
@@ -258,7 +304,7 @@ html, body {
     grid-template-columns: 40% 60%;
 }
 
-.disch_dishplay_button a{
+.dish_dishplay_button a{
     display: flex;
 
     justify-content: center;
@@ -271,8 +317,7 @@ html, body {
 
     text-decoration: none;
 
-    margin-left: calc(var(--text-left-marging-padding)*2);
-    margin-top: 5%;
+    margin-left: calc(var(--text-left-marging-padding)*2);  
 
     color: var(--kahki);
 
@@ -280,9 +325,13 @@ html, body {
     background-color: var(--lighter-red);
 }
 
-.disch_dishplay_button a:hover{
+.dish_dishplay_button a:hover{
     border-color: var(--darker-red);
     background-color: var(--darker-red);
+}
+
+.dish_dishplay_button h3{
+    margin-top: 5%;
 }
 
 .dishes_bottom_row button{
@@ -303,8 +352,10 @@ html, body {
 
 .bottom_right{
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
+
+    margin-left: 10%;
 }
 
 .bottom_right p{
@@ -316,6 +367,26 @@ html, body {
     color: var(--lighter-red);
 }
 
+/* footer -----------------------------------------------------------------------------------------------------------------------*/
+
+.footer_box{
+    height: 300px; 
+
+    padding-top: 30px;
+
+    background-color: var(--lighter-orange);
+}
+
+.footer_logo{
+    width: 100px;
+
+    float: right;
+    margin-right: 10%;
+}
+
+.contact_img{
+    width: 150px;
+}
 
 
 
