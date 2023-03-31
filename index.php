@@ -1,3 +1,4 @@
+
 <?php
 //// Allereerst zorgen dat de "Autoloader" uit vendor opgenomen wordt:
 require_once("vendor/autoload.php");
@@ -27,6 +28,7 @@ $loader = new \Twig\Loader\FilesystemLoader("templates");
 /// VOOR DEVELOPMENT:
 $twig = new \Twig\Environment($loader, ["debug" => true ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
+
 
 /// VERWERK -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,3 +84,4 @@ $template = $twig->load($template);
 
 /// En tonen die handel!
 echo $template->render(["title" => $title, "data" => $data]);
+?>

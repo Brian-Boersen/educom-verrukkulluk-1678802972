@@ -72,3 +72,22 @@ php composer require twig/twig
 ### Project
 Dit "skeleton" project is een eenvoudige instructie hoe je met twig kunt werken. 
 Kijk voor meer informatie en uitgebreide documentatie op de [twig site](https://twig.symfony.com)
+
+
+### workflow
+
+//TODO: detail page
+
+head>
+(scope) change slide img to dish img
+
+database>
+(scope) change vegan hamburger type
+(scope) add pictures to dishes and ingredients
+(scope) change 'stuk' to 'stuk(s)'
+
+body>
+(scope) --change tabs width--
+(scope) add data to 'bereiding' and 'comments' tabs
+
+
