@@ -1,15 +1,14 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
+    <script>
+    $(DocumentType).ready(function() {
+        $("#head_background_img").vegas('options', 'slides', [{src:'{{ data.0.afbeelding }}'}]);
+    });
+    </script>
 {% endblock %}
 
 {%  block content %}
-{% function asset(asset) %}
-    {{ '/path/to/assets/' ~ asset|trim('/') }}
-{% endfunction %}
-
-    {{ 'http://localhost/educom-verrukkulluk-1678802972/index.php' ~ asset('assets/js/img_slide.js') }}
-    <script> set_slide_image('{{ data.0.afbeelding }}');</script>
     <div class="row">
         <div class="col-12">
             <div class="row detail_box">

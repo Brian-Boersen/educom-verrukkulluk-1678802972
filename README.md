@@ -79,7 +79,7 @@ Kijk voor meer informatie en uitgebreide documentatie op de [twig site](https://
 //TODO: detail page
 
 head>
-(scope) change slide img to dish img
+(scope) --change slide img to dish img--
 
 database>
 (scope) change vegan hamburger type

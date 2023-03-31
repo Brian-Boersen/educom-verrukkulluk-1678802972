@@ -15,7 +15,6 @@ current_slides = slides_reel;
     function set_slide_image(image){
         current_slides = [{src: image}];
         console.log(current_slides);
-
         $("#head_background_img").vegas({
             cover:true,
             slides:current_slides,
@@ -28,5 +27,6 @@ current_slides = slides_reel;
         slides:current_slides,
         transition: 'fade'
     })
+    console.log("working2")
     
 })      
