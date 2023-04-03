@@ -66,10 +66,16 @@ switch($action) {
             break;
         }
 
+        case "cart": {
+            $data = $dish->selectDishes($gerecht_id);
+            $template = 'shoppingCart.html.twig';
+            $title = "boodschap mandje";
+            break;
+        }
+
         case "add_rating":{
-            if(isset($rating)){
-                //dont forget to uncomment
-                //$dish_info->addRating($gerecht_id, $rating);
+            if(isset($rating)){             
+                $dish_info->addRating($gerecht_id, $rating);
             }
             break;
         }
