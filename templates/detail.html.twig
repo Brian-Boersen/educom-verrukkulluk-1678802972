@@ -12,11 +12,11 @@
     <div class="row">
         <div class="col-12">
             <div class="row detail_box">
-                <div class="col-md-5 dish_img">
+                <div class="col-12 col-lg-5 dish_img">
                     <img src="{{data.0.afbeelding}}" alt="404">
                 </div> 
 
-                <div class="col-md-7 dish_details">
+                <div class="col-12 col-md-7 dish_details">
                     <div class="">
                         <div class="dish_top_info">
                                 <p><i class="fa fa-male"></i> 4</p>
@@ -79,52 +79,55 @@
 
             <div class="detail_tabs">
                 <div class="tab_content">
-                    
                     <div class="ingredients_tab">
                         <ul>
                             {% for ingredient in data.0.ingredienten %}
                                 <div class="row">
-                                    <div class="col-2">
-                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    <div class="col-12 col-lg-2">
+                                        <img src="{{ ingredient.afbeelding }}" alt="404">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-12 col-lg-8">
                                         <li><h3>{{ ingredient.naam }}</h3></li>
                                         <li>{{ ingredient.omschrijving }}</li>
                                         <li><h4 style="display: inline-block;">Hoeveelheid: </h4> {{ingredient.aantal}} {{ ingredient.eenheid }}.</li>
+                                    </div>
+                                    <div class="col-2">
+                                    </div>
                                 </div>
                             {% endfor %}
                         </ul>
                     </div>
 
                     <div class="steps_tab hide_tab">
-                        <h2>Bereiding</h2>
                         <ul>
-                            {% for ingredient in data.0.ingredienten %}
+                            {% for bereiding in data.0.bereidingswijze %}
                                 <div class="row">
-                                    <div class="col-2">
-                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    <div class="col-12 col-lg-2">
+                                        <h2>{{ bereiding.nummeriek_veld}}.</h2>
                                     </div>
-                                    <div class="col-10">
-                                        <li><h3>{{ ingredient.naam }}<h2></li>
-                                        <li>{{ ingredient.omschrijving }}</li>
-                                        <li><h4>Hoeveelheid: </h4>{{ingredient.aantal}}{{ ingredient.eenheid }}.</li>
+                                    <div class="col-12 col-lg-8">
+                                        <li>{{ bereiding.tekst_veld }}</li>
+                                    </div>
+                                    <div class="col-2">
+                                    </div>
                                 </div>
                             {% endfor %}
                         </ul>
                     </div>
 
                     <div class="comments_tab hide_tab">
-                        <h2>comments</h2>
                         <ul>
-                            {% for ingredient in data.0.ingredienten %}
+                            {% for comment in data.0.opmerkingen %}
                                 <div class="row">
-                                    <div class="col-2">
-                                        <img src="{{ data.0.afbeelding }}" alt="404">
+                                    <div class="col-12 col-lg-2">
+                                        <img src="{{comment.afbeelding}}" alt="404">
                                     </div>
-                                    <div class="col-10">
-                                        <li><h3>{{ ingredient.naam }}<h2></li>
-                                        <li>{{ ingredient.omschrijving }}</li>
-                                        <li><h4>Hoeveelheid: </h4>{{ingredient.aantal}}{{ ingredient.eenheid }}.</li>
+                                    <div class="col-12 col-lg-8">
+                                        <li><h3>{{ comment.user_name }}</h3></li>
+                                        <li>{{ comment.tekst_veld }}</li>
+                                    </div>
+                                    <div class="col-2">
+                                    </div>
                                 </div>
                             {% endfor %}
                         </ul>
@@ -138,9 +141,9 @@
 
         </div>
     </div>
-
+{#
     <pre>
         {{ dump(data) }}
        </pre>
-
+#}
 {%  endblock %}

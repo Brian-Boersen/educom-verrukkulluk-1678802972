@@ -79,15 +79,36 @@ Kijk voor meer informatie en uitgebreide documentatie op de [twig site](https://
 //TODO: detail page
 
 head>
-(scope) --change slide img to dish img--
+    (priority)
+        (doing)
+
+        (done)
+            - --change slide img to dish img--
 
 database>
-(scope) change vegan hamburger type
-(scope) add pictures to dishes and ingredients
-(scope) change 'stuk' to 'stuk(s)'
+    (priority)
+        (doing)
+            - link to database in project
+
+        (done)
+            - --change vegan hamburger type--
+            - --add pictures to dishes, ingredients and users--
+            - --change 'stuk' to 'stuk(s)'--
 
 body>
-(scope) --change tabs width--
-(scope) add data to 'bereiding' and 'comments' tabs
+    (priority)
+        (doing)
+
+        (done)
+            - --change tabs width--
+            - --add data to 'bereiding'--
+            - --add data to 'comments' tab--
+
+    (secondary)
+        (doing)
+            - make website mobile friendly
+
+        (done)
+            - --make tabs scroll window smaller--
 
 
