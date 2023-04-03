@@ -55,6 +55,32 @@ h4, h5{
     font-size: 22px;
 }
 
+/* misc */
+.stars{
+    position: absolute;
+
+    bottom: 25%;
+}
+.stars_container{
+    position: relative;
+}
+
+.star {
+    display: inline;
+
+    cursor: pointer;
+
+    font-size: 1.2em;
+
+    color: var(--lighter-orange);
+}
+
+.star:hover{
+    color: var(--darker-orange);
+}
+
+
+
 /** HTML / BODY **/
 /*head -----------------------------------------------*/
 html, body {

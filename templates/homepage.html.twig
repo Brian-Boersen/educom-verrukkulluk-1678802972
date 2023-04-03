@@ -20,9 +20,17 @@
                         <div class="col-8 ">
                             <h2>{{ record.titel }}</h2>
                         </div>
-                        <div class="col-4">
-                            <p>ingredienten: {{ record.ingredienten|length }} sterren: {{ record.gemiddelde_waardering }}<p>
-                        </div>
+                        <div class="col-4 stars_container">
+                                <div class="stars" data-stars="{{record.id}}">
+                                    {% for i in 1..5 %}
+                                        {% if record.gemiddelde_waardering >= i %}
+                                            <div class="star" data-value="{{i}}"><i data-value="{{i}}" class="fa fa-star"></i></div>
+                                        {% else %}
+                                            <div class="star" data-value="{{i}}"><i class="far fa-star"></i></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                     </div>
 
                     <div class="dishes_short_description">

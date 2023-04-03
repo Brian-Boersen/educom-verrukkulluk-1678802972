@@ -20,6 +20,8 @@ $dish_info = new dish_info($db->getConnection());
 $dish = new dish($db->getConnection());
 $cart = new shopping_cart($db->getConnection());
 
+
+
 /// Twig koppelen:
 $loader = new \Twig\Loader\FilesystemLoader("templates");
 /// VOOR PRODUCTIE:
@@ -31,17 +33,6 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 
 /// VERWERK -----------------------------------------------------------------------------------------------------------------------------------------
-
-//$data = $cart->selectCart(1);
-
-//$dish_info->addRating(2,3,2);
-
-/// RETURN
-//echo "<pre>";
-//var_dump($data);
-
-//________________________________________________________________________________________________________________________________________________________________________________________________
-
 
 
 /******************************/
@@ -56,6 +47,8 @@ http://localhost/index.php?gerecht_id=3&action=detail
 $gerecht_id = isset($_GET["gerecht_id"]) ? $_GET["gerecht_id"] : "";
 $action = isset($_GET["action"]) ? $_GET["action"] : "homepage";
 
+//rating functionality
+$rating = isset($_GET['rating']) ? (int)$_GET['rating'] : null;
 
 switch($action) {
 
@@ -73,8 +66,17 @@ switch($action) {
             break;
         }
 
+        case "add_rating":{
+            if(isset($rating)){
+                //dont forget to uncomment
+                //$dish_info->addRating($gerecht_id, $rating);
+            }
+            break;
+        }
         /// etc
 }
+
+
 
 
 /// Onderstaande code schrijf je idealiter in een layout klasse of iets dergelijks

@@ -18,6 +18,57 @@
     <script type="text/javascript" language="javascript" src="assets/vegas/vegas.js"></script>
     
     <script type="text/javascript" language="javascript" src="assets/js/toggle_tabs.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+
+            //on click change color of star to gold
+            $(".star").click(function() {
+                const value = $(this).attr("data-value");
+
+                const stars_parent = $(this).parent().attr("data-stars");
+                let everageRating = 0;
+
+                $.ajax({
+                    //server url
+                    url:"./index.php",
+                    type: "GET",
+                    data: {
+                        gerecht_id: {{ data.0.id }}, 
+                        rating: value, 
+                        action: "add_rating", 
+                        succes: function() {
+                            console.log("rating added | gerecbt_id: {{ data.0.id }} | rating: " + value + " | stars: " + stars_parent);
+                            
+                            //for each star element add and remove star color
+                            $(".star").each((index,elem) => {
+                                const itemValue = $(elem).attr("data-value");
+                                const parent = $(elem).parent().attr("data-stars");
+
+                                if(parent == stars_parent){
+                                    //remove stars first
+                                    if($(elem).children(0).hasClass("far")){
+                                        $(elem).children(0).removeClass("far");
+                                    }
+                                    else{
+                                    $(elem).children(0).removeClass("fa");
+                                    }
+
+                                    //add color to relevent stars
+                                    if(itemValue <= value){
+                                        $(elem).children(0).addClass("fa");
+                                    }
+                                    else{
+                                        $(elem).children(0).addClass("far");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            })
+        });
+    </script>
     
 </html>
 <body>

@@ -28,8 +28,16 @@
                             <div class="col-8 ">
                                 <h2>{{ data.0.titel }}</h2>
                             </div>
-                            <div class="col-4">
-                                <p>sterren: {{ data.0.gemiddelde_waardering }}<p>
+                            <div class="col-4 stars_container">
+                                <div class="stars" data-stars="{{data.0.id}}">
+                                    {% for i in 1..5 %}
+                                        {% if data.0.gemiddelde_waardering >= i %}
+                                            <div class="star" data-value="{{i}}"><i data-value="{{i}}" class="fa fa-star"></i></div>
+                                        {% else %}
+                                            <div class="star" data-value="{{i}}"><i class="far fa-star"></i></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
