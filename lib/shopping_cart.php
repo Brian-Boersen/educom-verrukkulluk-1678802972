@@ -58,11 +58,20 @@ class shopping_cart{
 
         $cart = [];
 
-        while($ingredient = mysqli_fetch_array($result, MYSQLI_ASSOC) ){          
-            $artData = $this->article->selectArticle($ingredient["artikel_id"]);
-            $cart[] = $ingredient + $artData;
+        while($product = mysqli_fetch_array($result, MYSQLI_ASSOC) ){          
+            $artData = $this->article->selectArticle($product["artikel_id"]);
+            $price = $this->calcPrice($product["aantal"],$artData["prijs"]);
+            $cart[] = $product + ["totaal_prijs" => $price] + $artData;
         }
 
         return $cart;
+    }
+
+    private function calcPrice($amount, $price){
+        $total = 0;
+
+        $total += $price * $amount;
+
+        return round($total,2);
     }
 }

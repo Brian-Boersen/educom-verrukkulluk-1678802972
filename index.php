@@ -50,46 +50,59 @@ $action = isset($_GET["action"]) ? $_GET["action"] : "homepage";
 //rating functionality
 $rating = isset($_GET['rating']) ? (int)$_GET['rating'] : null;
 
-switch($action) {
+//shopping cart
+$user_id = 1;
 
-        case "homepage": {
-            $data = $dish->selectDishes();
-            $template = 'homepage.html.twig';
-            $title = "homepage";
-            break;
+switch($action) {  
+    case "add_rating":{
+        if(isset($rating)){             
+            $dish_info->addRating($gerecht_id, $rating);
         }
+        break;
+    }
 
-        case "detail": {
-            $data = $dish->selectDishes($gerecht_id);
-            $template = 'detail.html.twig';
-            $title = "detail pagina";
-            break;
-        }
+    case "add_ingredients_to_cart":{
+        $cart->addArticlesToCart($gerecht_id,$user_id);     
+        break;
+    }
 
-        case "cart": {
-            $data = $dish->selectDishes($gerecht_id);
-            $template = 'shoppingCart.html.twig';
-            $title = "boodschap mandje";
-            break;
-        }
+    case "homepage": {
+        $data = $dish->selectDishes();
+        $template = 'homepage.html.twig';
+        $title = "homepage";
+        break;
+    }
 
-        case "add_rating":{
-            if(isset($rating)){             
-                $dish_info->addRating($gerecht_id, $rating);
-            }
-            break;
-        }
-        /// etc
+    case "detail": {
+        $data = $dish->selectDishes($gerecht_id);
+        $template = 'detail.html.twig';
+        $title = "detail pagina";
+        break;
+    }
+
+    case "cart": {
+        $data = $cart->selectCart($user_id);
+        $template = 'shoppingCart.html.twig';
+        $title = "boodschap mandje";
+        break;
+    }
+
+    /// etc
 }
 
 
 
 
-/// Onderstaande code schrijf je idealiter in een layout klasse of iets dergelijks
-/// Juiste template laden, in dit geval "homepage"
-$template = $twig->load($template);
+    /// Onderstaande code schrijf je idealiter in een layout klasse of iets dergelijks
+if(isset($template)){
+    /// Juiste template laden, in dit geval "homepage"
+    $template = $twig->load($template);
+
+    /// En tonen die handel!
+    echo $template->render(["title" => $title, "data" => $data]);
+}
 
 
-/// En tonen die handel!
-echo $template->render(["title" => $title, "data" => $data]);
+
+
 ?>

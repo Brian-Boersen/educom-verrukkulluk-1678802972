@@ -302,7 +302,7 @@ html, body {
     padding-right: 8%;
 }
 
-.add_dish_to_cart_button a{
+.add_dish_to_cart_button div{
     position: absolute;
     bottom: 8%;
     left: 10%;
@@ -319,13 +319,15 @@ html, body {
 
     text-decoration: none; 
 
+    cursor: pointer;
+
     color: var(--kahki);
 
     border-color: var(--lighter-red);
     background-color: var(--lighter-red);
 }
 
-.add_dish_to_cart_button a:hover{
+.add_dish_to_cart_button div:hover{
     border-color: var(--darker-red);
     background-color: var(--darker-red);
 }
@@ -619,5 +621,8 @@ html, body {
     width: 150px;
 }
 
+/*shopping cart*/
 
-
+.cart-block img{
+    width: 100%;
+}

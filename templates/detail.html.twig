@@ -4,6 +4,22 @@
     <script>
     $(DocumentType).ready(function() {
         $("#head_background_img").vegas('options', 'slides', [{src:'{{ data.0.afbeelding }}'}]);
+    
+
+        $(".add_to_cart_button").click(function() {
+            console.log("clicked");
+            $.ajax({
+                url:"./index.php",
+                type: "GET",
+                data: {
+                    user_id: 1,
+                    gerecht_id: {{data.0.id}},
+                    action: "add_ingredients_to_cart",
+                },
+            }).done(function(){
+                window.location.href = "index.php?action=cart";
+            });          
+        }); 
     });
     </script>
 {% endblock %}
@@ -32,7 +48,7 @@
                                 <div class="stars" data-stars="{{data.0.id}}">
                                     {% for i in 1..5 %}
                                         {% if data.0.gemiddelde_waardering >= i %}
-                                            <div class="star" data-value="{{i}}"><i data-value="{{i}}" class="fa fa-star"></i></div>
+                                            <div class="star" data-value="{{i}}"><i class="fa fa-star"></i></div>
                                         {% else %}
                                             <div class="star" data-value="{{i}}"><i class="far fa-star"></i></div>
                                         {% endif %}
@@ -59,9 +75,9 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="add_dish_to_cart_button">
-                                    <a href="http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id={{data.0.id}}&action=detail" >
+                                    <div class="add_to_cart_button">
                                         <h3>Op lijst</h3>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-3">

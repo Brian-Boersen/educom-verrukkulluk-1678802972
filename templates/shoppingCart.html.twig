@@ -2,9 +2,46 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
-
+<script>
+    
+</script>
 {% endblock %}
 {# nu de block content op in de main pagina vullen #}
 {% block content %}
+    <div class="cart-block">
+        <div class="row">
+            <div class="col-12">
+                <h1>Boodschappen</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul>
+                    {% for product in data %}
+                        <div class="row">
+                            <div class="col-12 col-lg-2">
+                                <img src="{{ product.afbeelding }}" alt="404">
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <li><h3>{{ product.naam }}</h3></li>
+                                <li>{{ product.omschrijving }}</li>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <input type="number" name="aantal" value="{{ product.aantal }}"></input>
+                                <p><i class="fa fa-euro-sign"></i> {{product.totaal_prijs}},-</p>
+                                <div class="check"><p> <i class="fas fa-check" ></i></p></div>
+                                <div class="trash"><p><i class="far fa-trash-alt"></i></p></div>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 
+    <pre>
+        {{ dump(data) }}
+    </pre>
 {% endblock %}
