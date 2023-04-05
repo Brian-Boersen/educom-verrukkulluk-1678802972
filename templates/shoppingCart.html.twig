@@ -2,8 +2,79 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
-<script>
-    
+ <script>
+    $(DocumentType).ready(function() {
+        
+        calcTotalCartPrice();
+
+        function calcTotalCartPrice() {
+            var total = 0;
+            $(".total_item_price").each(function() {
+                total += parseFloat($(this).text().replace(",", "."));
+            });
+            $(".total_cart_price").text(total.toFixed(2));
+        }
+
+        //recalc total_item_price price when item count changes
+        function calcTotalItemPrice(item,count,price) {
+            total_price = (count * price).toFixed(2);
+
+            item.closest(".row").find(".total_item_price").text(total_price);
+        }
+
+        $(".item_count_input").on('change', function(){
+            input = $(this);
+            $.ajax({
+                url:"./index.php",
+                type: "GET",
+                data: {
+                    cart_item_id: input.attr("data-product"),
+                    cart_item_count: input.val(),
+                    action: "update_cart_item",
+                },
+            }).done(function(data) {
+                calcTotalItemPrice(input,input.val(),input.attr("data-price"));
+                calcTotalCartPrice();
+            });
+        });
+
+        $(".trash").click(function() {
+            console.log("clicked");
+
+            cart_item = $(this).attr("data-product");
+            
+            $.ajax({
+                url:"./index.php",
+                type: "GET",
+                data: {
+                    cart_item_id: cart_item,
+                    action: "delete_cart_item",
+                },
+            }).
+            done(function(data) {
+                $(".id_" + cart_item).remove();
+                calcTotalCartPrice();
+            });
+        });
+
+        $(".all-trash").click(function() {
+            console.log("clicked");
+
+            $.ajax({
+                url:"./index.php",
+                type: "GET",
+                data: {
+                    user_id: 1,
+                    action: "delete_all_cart_items",
+                },
+            }).
+            done(function() {
+                $(".inner-cart-block").remove();
+                calcTotalCartPrice();
+            });
+        });
+
+    });
 </script>
 {% endblock %}
 {# nu de block content op in de main pagina vullen #}
@@ -14,34 +85,36 @@
                 <h1>Boodschappen</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row inner-cart-block">
             <div class="col-12">
                 <ul>
                     {% for product in data %}
-                        <div class="row">
+                        <div class="row id_{{product.id}}">
                             <div class="col-12 col-lg-2">
                                 <img src="{{ product.afbeelding }}" alt="404">
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-5">
                                 <li><h3>{{ product.naam }}</h3></li>
                                 <li>{{ product.omschrijving }}</li>
                             </div>
                             <div class="col-12 col-lg-4">
-                                <input type="number" name="aantal" value="{{ product.aantal }}"></input>
-                                <p><i class="fa fa-euro-sign"></i> {{product.totaal_prijs}},-</p>
-                                <div class="check"><p> <i class="fas fa-check" ></i></p></div>
-                                <div class="trash"><p><i class="far fa-trash-alt"></i></p></div>
+                                <input type="number" name="aantal" class="item_count_input" data-price="{{product.prijs}}" data-product="{{product.id}}" value="{{ product.aantal }}"></input>
+                                <div><i class="fa fa-euro-sign"></i> <p class="total_item_price"> {{product.totaal_prijs}},-</p></div>
+                                <p><i data-product="{{product.id}}" class="far fa-trash-alt trash"></i></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                             </div>
                         </div>
-                    {% endfor %}
+                    {% endfor %}        
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <h1>Totaal</h1>  
+                <div><i class="fa fa-euro-sign"></i> <p class="total_cart_price"></p>,-</div>
+                <p><i class="far fa-trash-alt all-trash"></i></p>
+            </div>
+        </div>
     </div>
-
-    <pre>
-        {{ dump(data) }}
-    </pre>
 {% endblock %}

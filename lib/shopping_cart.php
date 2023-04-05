@@ -67,6 +67,21 @@ class shopping_cart{
         return $cart;
     }
 
+    public function updateItemInCart($cart_item_id,$cart_item_count){
+        $sql = "UPDATE winkelmand SET aantal = $cart_item_count WHERE id = $cart_item_id";
+        mysqli_query($this->connection, $sql);
+    }
+
+    public function removeItemFromCart($cart_item_id){
+        $sql = "DELETE FROM winkelmand WHERE id = $cart_item_id";
+        mysqli_query($this->connection, $sql);
+    }
+
+    public function removeAllItemsFromCart($user_id){
+        $sql = "DELETE FROM winkelmand WHERE user_id = $user_id";
+        mysqli_query($this->connection, $sql);
+    }
+
     private function calcPrice($amount, $price){
         $total = 0;
 

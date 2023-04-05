@@ -52,6 +52,8 @@ $rating = isset($_GET['rating']) ? (int)$_GET['rating'] : null;
 
 //shopping cart
 $user_id = 1;
+$cart_item_id = isset($_GET["cart_item_id"]) ? $_GET["cart_item_id"] : null;
+$cart_item_count = isset($_GET["cart_item_count"]) ? $_GET["cart_item_count"] : 1;
 
 switch($action) {  
     case "add_rating":{
@@ -63,6 +65,21 @@ switch($action) {
 
     case "add_ingredients_to_cart":{
         $cart->addArticlesToCart($gerecht_id,$user_id);     
+        break;
+    }
+
+    case "delete_cart_item":{
+        $cart->removeItemFromCart($cart_item_id);
+        break;
+    }
+
+    case "delete_all_cart_items":{
+        $cart->removeAllItemsFromCart($user_id);
+        break;
+    }
+
+    case "update_cart_item":{
+        $cart->updateItemInCart($cart_item_id,$cart_item_count);
         break;
     }
 
