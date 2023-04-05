@@ -7,7 +7,6 @@
     
 
         $(".add_to_cart_button").click(function() {
-            console.log("clicked");
             $.ajax({
                 url:"./index.php",
                 type: "GET",
@@ -20,6 +19,22 @@
                 window.location.href = "index.php?action=cart";
             });          
         }); 
+
+        $(".red_heart").click(function() {
+            console.log("clicked");
+            $.ajax({
+                url:"./index.php",
+                type: "GET",
+                data: {
+                    user_id: 1,
+                    gerecht_id: {{data.0.id}},
+                    action: "toggle_favorite",
+                },
+            }).done(function(){
+                //change class of child element from fa to far or vice versa
+                $(".red_heart").children().toggleClass("fa fa-heart fa-2x far fa-heart fa-2x");
+            });          
+        });
     });
     </script>
 {% endblock %}
@@ -82,7 +97,11 @@
                             </div>
                             <div class="col-3">
                                 <div class="favorite_button">
-                                    <i class="fa fa-heart fa-2x"></i>
+                                {% if data.0.is_favoriet != null %}
+                                    <div class="red_heart"><i class="fa fa-heart fa-2x"></i></div>
+                                {% else %}
+                                    <div class="red_heart"><i class="far fa-heart fa-2x"></i></div>
+                                {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -165,9 +184,9 @@
 
         </div>
     </div>
-{#
+
     <pre>
         {{ dump(data) }}
        </pre>
-#}
+
 {%  endblock %}

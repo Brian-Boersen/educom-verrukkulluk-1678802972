@@ -344,6 +344,10 @@ html, body {
     right: 10%;
 
     margin-top: 2%;
+}
+
+.red_heart{
+    cursor: pointer;
     color: var(--lighter-red);
 }
 

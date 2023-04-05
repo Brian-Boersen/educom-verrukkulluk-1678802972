@@ -41,7 +41,10 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 /*
 URL:
-http://localhost/index.php?gerecht_id=3&action=detail
+http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id=3&action=detail
+http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id=3&action=add_rating&rating=5
+http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id=1&action=toggle_favorite
+http://localhost/educom-verrukkulluk-1678802972/index.php?gerecht_id=3&action=add_ingredients_to_cart
 */
 
 $gerecht_id = isset($_GET["gerecht_id"]) ? $_GET["gerecht_id"] : "";
@@ -59,6 +62,16 @@ switch($action) {
     case "add_rating":{
         if(isset($rating)){             
             $dish_info->addRating($gerecht_id, $rating);
+        }
+        break;
+    }
+
+    case "toggle_favorite": {
+        if($dish->determineFavorite($gerecht_id, $user_id) == false){
+            $dish_info->addFavorite($gerecht_id, $user_id);
+        }
+        else{
+            $dish_info->deleteFavorite($gerecht_id, $user_id);
         }
         break;
     }
@@ -92,6 +105,13 @@ switch($action) {
 
     case "detail": {
         $data = $dish->selectDishes($gerecht_id);
+        if($dish->determineFavorite($gerecht_id, $user_id) == true){
+            $data[0]["is_favoriet"] = true;
+        }
+        else{
+            $data[0]["is_favoriet"] = null;
+        }
+
         $template = 'detail.html.twig';
         $title = "detail pagina";
         break;

@@ -20,8 +20,8 @@ class dish_info{
         $result = mysqli_query($this->connection,$sql);      
     } 
 
-    public function deleteFavorite($dishInfo_id, $user_id){
-        $sql = "DELETE FROM gerecht_info WHERE id = $dishInfo_id and user_id = $user_id";
+    public function deleteFavorite($dish_id, $user_id){
+        $sql = "DELETE FROM gerecht_info WHERE gerecht_id = $dish_id and user_id = $user_id";
         $result = mysqli_query($this->connection,$sql);
     }
 
