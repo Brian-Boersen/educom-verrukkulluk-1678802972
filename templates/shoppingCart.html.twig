@@ -89,31 +89,37 @@
             <div class="col-12">
                 <ul>
                     {% for product in data %}
-                        <div class="row id_{{product.id}}">
-                            <div class="col-12 col-lg-2">
+                        <div class="row item_row id_{{product.id}}">
+                            <div class="col-3 col-lg-2">
                                 <img src="{{ product.afbeelding }}" alt="404">
                             </div>
-                            <div class="col-12 col-lg-5">
+                            <div class="col-9 col-lg-6">
                                 <li><h3>{{ product.naam }}</h3></li>
                                 <li>{{ product.omschrijving }}</li>
                             </div>
-                            <div class="col-12 col-lg-4">
-                                <input type="number" name="aantal" class="item_count_input" data-price="{{product.prijs}}" data-product="{{product.id}}" value="{{ product.aantal }}"></input>
-                                <div><i class="fa fa-euro-sign"></i> <p class="total_item_price"> {{product.totaal_prijs}},-</p></div>
-                                <p><i data-product="{{product.id}}" class="far fa-trash-alt trash"></i></p>
+                            <div class="col-4 col-lg-1">
+                                <input type="text" name="aantal" class="item_count_input" data-price="{{product.prijs}}" data-product="{{product.id}}" value="{{ product.aantal }}"></input>
                             </div>
-                            <div class="col-1">
+                            <div class="col-4 col-lg-2 item_price">
+                                <i class="fa fa-euro-sign euro_sign"></i> <text class="total_item_price"> {{product.totaal_prijs}}</text>
                             </div>
-                        </div>
+                            <div class="col-4 col-lg-1">
+                                <i data-product="{{product.id}}" class="far fa-2x fa-trash-alt trash"></i>
+                            </div>
+                        </div>                   
                     {% endfor %}        
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
+        <div class="row cart_bot_row">
+            <div class="col-9">
                 <h1>Totaal</h1>  
-                <div><i class="fa fa-euro-sign"></i> <p class="total_cart_price"></p>,-</div>
-                <p><i class="far fa-trash-alt all-trash"></i></p>
+            </div>
+            <div class="col-2 item_price">
+                <div><i class="fa fa-euro-sign euro_sign"></i> <text class="total_cart_price"></text></div>
+            </div>
+            <div class="col-1">
+                <text><i class="far fa-2x fa-trash-alt all-trash"></i></text>
             </div>
         </div>
     </div>
