@@ -51,7 +51,7 @@
                     <div class="">
                         <div class="dish_top_info">
                                 <p><i class="fa fa-male"></i> 4</p>
-                                <p><i class="fa fa-euro-sign euro_sign"></i> {{data.0.totaalprijs}},-</p>
+                                <p><i class="fa fa-euro-sign euro_sign"></i> {{data.0.totaalprijs|replace({'.':','})}},-</p>
                                 <p><i class="fa fa-fire"></i> {{data.0.calorieen}}</p>                         
                         </div>
 

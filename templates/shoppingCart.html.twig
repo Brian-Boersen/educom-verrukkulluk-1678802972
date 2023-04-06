@@ -12,13 +12,16 @@
             $(".total_item_price").each(function() {
                 total += parseFloat($(this).text().replace(",", "."));
             });
-            $(".total_cart_price").text(total.toFixed(2));
+
+            total = total.toFixed(2).replace(".", ",");	
+
+            $(".total_cart_price").text(total);
         }
 
         //recalc total_item_price price when item count changes
         function calcTotalItemPrice(item,count,price) {
-            total_price = (count * price).toFixed(2);
-
+            total_price = (count * price).toFixed(2).replace(".", ",");
+            
             item.closest(".row").find(".total_item_price").text(total_price);
         }
 
@@ -101,7 +104,7 @@
                                 <input type="text" name="aantal" class="item_count_input" data-price="{{product.prijs}}" data-product="{{product.id}}" value="{{ product.aantal }}"></input>
                             </div>
                             <div class="col-4 col-lg-2 item_price">
-                                <i class="fa fa-euro-sign euro_sign"></i> <text class="total_item_price"> {{product.totaal_prijs}}</text>
+                                <i class="fa fa-euro-sign euro_sign"></i> <text class="total_item_price"> {{product.totaal_prijs|replace({'.':','})}}</text>
                             </div>
                             <div class="col-4 col-lg-1">
                                 <i data-product="{{product.id}}" class="far fa-2x fa-trash-alt trash"></i>

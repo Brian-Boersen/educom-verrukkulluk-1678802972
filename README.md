@@ -79,14 +79,14 @@ Kijk voor meer informatie en uitgebreide documentatie op de [twig site](https://
 //TODO: detail page
 
 head>
-    (priority)
+    (priority)>
         (doing)
 
         (done)
             - --change slide img to dish img--
 
 database>
-    (priority)
+    (priority)>
         (doing)
             - link to database in project
 
@@ -96,7 +96,7 @@ database>
             - --change 'stuk' to 'stuk(s)'--
 
 body>
-    (priority)
+    (priority)>
         (doing)
 
         (done)
@@ -105,9 +105,6 @@ body>
             - --add data to 'comments' tab--
 
     (secondary)
-        (doing)
-            - make website mobile friendly
-
         (done)
             - --make tabs scroll window smaller--
 
