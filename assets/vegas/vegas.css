@@ -43,7 +43,7 @@
     background: transparent center center no-repeat;
     -webkit-transform: translateZ(0);
             transform: translateZ(0);
-    will-change: transform, opacity;
+    will-change: auto, opacity;
 }
 
 body .vegas-container {

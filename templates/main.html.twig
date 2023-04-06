@@ -21,8 +21,7 @@
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function() {
-        ///rating system---------------------------------------------------------------------------------------------------------
-            
+        ///rating system--------------------------------------------------------------------------------------------------------- 
             {% if data|length != 0 %}
                 //on click change color of star to gold
                 $(".star").click(function() {
@@ -70,7 +69,7 @@
                     });
                 });
             {% endif %}
-    ///search system -------------------------------------------------------------------------------------------------------
+        ///search system -------------------------------------------------------------------------------------------------------
             function searchForDishes(searchkeys){
                 //replace where there are dots or spaces with commas
                 searchkeys = searchkeys.replace(/\.| /g, ",");
@@ -110,8 +109,17 @@
     <div class="row" id="head">
         <div class="col-md-12" id="head_background_img">
             <a href="index.php" > <img class="brand_logo" src="assets/img/logo-v2.png"/></a>
-            <!--<div > <img class="menu_logo" src="assets/img/menu-bar.png"/> </div>-->
-            <div class="menu_logo" > <i class="fa fa-hamburger fa-3x"></i> </div>
+
+             <div class="menu">
+                <div class="menu_logo">
+                    <i class="fa fa-hamburger fa-3x"></i>
+                    <div class="menu_dropdown">
+                        <a href="index.php" > <img class="brand_logo" src="assets/img/logo-v2.png"/></a>
+                        <div><a href="./index.php?gerecht_id=1&action=cart" ><h1>mijn boodschappen lijst<h1></a></div>
+                    </div>
+                </div>
+            </div>
+            {# <div class="menu_logo" > <i class="fa fa-hamburger fa-3x"></i> </div> #}
             
             <div class="search_bar">
                 <i class="fa fa-search search_button"></i>
