@@ -65,54 +65,6 @@ class dish {
         return array_values($searchResult);
     }
 
-    //old code for search function, so unefficient
-    /* //for each word in the keywords array
-        foreach($keywords as $singleKeyword){
-                //check if the arrays content cotains the keyword
-                $searchResult += array_filter($dishes, function($dish) use ($singleKeyword){
-                    //goes trough all $dish keys with a string value
-                    foreach($dish as $key => $value){
-                        //if key is an array go trough the array
-                        if(is_array($value)){
-                            foreach($value as $subkey => $subvalue){
-                                //if the subvalue is a array
-                                if(is_array($subvalue)){
-                                    //go trough the array
-                                    foreach($subvalue as $subsubkey => $subsubvalue){
-                                        //if the subsubvalue is a string
-                                        if(is_string($subsubvalue)){
-                                            //value to lowercase
-                                            $lowercaseSubsubvalue = strtolower($subsubvalue);
-                                            //if the keyword is found in the string return true
-                                            if(strpos($lowercaseSubsubvalue, $singleKeyword) !== false){
-                                                return true;
-                                            }
-                                        }
-                                    }
-                                }
-                                elseif(is_string($subvalue)){
-                                    //value to lowercase
-                                    $lowercasesubvalue = strtolower($subvalue);
-                                    //if the keyword is found in the string return true
-                                    if(strpos($lowercasesubvalue, $singleKeyword) !== false){
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                        elseif(is_string($value)){
-                            //value to lowercase
-                            $value = strtolower($value);
-                            //if the keyword is found in the string return true
-                            if(strpos($value, $singleKeyword) !== false){
-                                return true;
-                            }
-                        }
-                    }
-                });        
-            
-        }*/ 
-    
     public function selectDishes($dish_id = null){
         $dishes = [];
         $sql = "SELECT * FROM gerecht";
@@ -179,7 +131,7 @@ class dish {
             $totalPrice += $artiklesNeeded * $ingredient["prijs"];
         }
 
-        return round($totalPrice, 2);
+        return number_format(round($totalPrice, 2),2);
     }
 
     private function calculateCalories($ingredients){

@@ -15,8 +15,9 @@ class article {
         $result = mysqli_query($this->connection, $sql);
         $article = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        return($article);
+        $article["prijs"] = number_format($article["prijs"],2);
 
+        return($article);
     }
 
 

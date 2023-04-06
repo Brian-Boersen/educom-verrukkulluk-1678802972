@@ -101,13 +101,6 @@ switch($action) {
 
     case "search":{
         $data = $dish->searchDishes($search);
-
-        // //debugging
-        // echo "<pre>";
-        // //var_dump($keywords);
-        // var_dump(array_values($data));
-        // echo "</pre>";
-
         $template = 'homepage.html.twig';
         $title = "homepage";
         break;

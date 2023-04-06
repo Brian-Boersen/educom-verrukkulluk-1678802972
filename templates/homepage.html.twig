@@ -17,7 +17,7 @@
                             <img src="{{ record.afbeelding }}">
                         </div>
                         <div class="row dishes_top_row">
-                            <div class="col-8 ">
+                            <div class="col-7 ">
                                 <h2>{{ record.titel }}</h2>
                             </div>
                             <div class="col-4 stars_container">
@@ -43,7 +43,7 @@
                             </div>               
                             <div class="bottom_right">
                                 <p><i class="fa fa-user-friends"></i> 4</p>
-                                <p><i class="fa fa-euro-sign euro_sign"></i> {{record.totaalprijs|replace({'.':','})}},-</p>
+                                <p><i class="fa fa-euro-sign euro_sign"></i> {{record.totaalprijs|replace({'.':','})}}</p>
                                 <p><i class="fa fa-fire"></i> {{record.calorieen}}</p>                         
                             </div>
                         </div>
@@ -52,10 +52,4 @@
             {% endfor %}
         </div>
     {% endif %}
-     {# Dump 
-       <pre>
-        {{ dump(data) }}
-       </pre> 
-       #}
-
 {% endblock %}

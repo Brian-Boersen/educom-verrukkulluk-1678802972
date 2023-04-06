@@ -50,13 +50,13 @@
                 <div class="col-12 col-md-7 dish_details">
                     <div class="">
                         <div class="dish_top_info">
-                                <p><i class="fa fa-male"></i> 4</p>
-                                <p><i class="fa fa-euro-sign euro_sign"></i> {{data.0.totaalprijs|replace({'.':','})}},-</p>
+                                <p><i class="fa fa-user-friends"></i> 4</p>
+                                <p><i class="fa fa-euro-sign euro_sign"></i> {{data.0.totaalprijs|replace({'.':','})}}</p>
                                 <p><i class="fa fa-fire"></i> {{data.0.calorieen}}</p>                         
                         </div>
 
                         <div class="row dish_title_row"> <!-- dishes_top_row">-->
-                            <div class="col-8 ">
+                            <div class="col-7">
                                 <h2>{{ data.0.titel }}</h2>
                             </div>
                             <div class="col-4 stars_container">
@@ -184,9 +184,4 @@
 
         </div>
     </div>
-
-    <pre>
-        {{ dump(data) }}
-       </pre>
-
 {%  endblock %}

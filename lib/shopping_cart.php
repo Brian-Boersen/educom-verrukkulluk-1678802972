@@ -87,6 +87,6 @@ class shopping_cart{
 
         $total += $price * $amount;
 
-        return round($total,2);
+        return number_format(round($total,2),2);
     }
 }
