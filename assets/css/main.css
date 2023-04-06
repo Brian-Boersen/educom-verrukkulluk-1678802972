@@ -108,8 +108,9 @@ html, body {
 .brand_logo{
     width: 25%;
 
-    margin-left: 2%;
-    margin-top: 1%;
+    position: absolute;
+    top:1%;
+    left: 1%;
 
     float: left;
 }
@@ -177,7 +178,7 @@ html, body {
     top: -600px;
     left: 0px;
     right: 0px;
-    height: 200px;
+    height: 300px;
 
     background-color: var(--white);
    
@@ -205,8 +206,8 @@ html, body {
 
 .menu_dropdown .brand_logo{
     position: absolute;
-    top:0;
-    left: 0;
+    top:1%;
+    left: 1%;
 }
 
 /*side bar--------------------------------------------*/
