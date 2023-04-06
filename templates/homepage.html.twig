@@ -6,52 +6,52 @@
 {% endblock %}
 {# nu de block content op in de main pagina vullen #}
 {% block content %}
+    {% if data|length != 0 %}
+        <div class="row"> 
+            {% for record in data %}
 
-    <div class="row"> 
-        {% for record in data %}
-
-            <div class="col-lg-12 col-xl-6 dishes_content">
-                <div class="small_dish_dishplay">
-                    
-                    <div class="dishes_img">
-                        <img src="{{ record.afbeelding }}">
-                    </div>
-                    <div class="row dishes_top_row">
-                        <div class="col-8 ">
-                            <h2>{{ record.titel }}</h2>
+                <div class="col-lg-12 col-xl-6 dishes_content">
+                    <div class="small_dish_dishplay">
+                        
+                        <div class="dishes_img">
+                            <img src="{{ record.afbeelding }}">
                         </div>
-                        <div class="col-4 stars_container">
-                                <div class="stars" data-stars="{{record.id}}">
-                                    {% for i in 1..5 %}
-                                        {% if record.gemiddelde_waardering >= i %}
-                                            <div class="star" data-value="{{i}}"><i data-value="{{i}}" class="fa fa-star"></i></div>
-                                        {% else %}
-                                            <div class="star" data-value="{{i}}"><i class="far fa-star"></i></div>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
+                        <div class="row dishes_top_row">
+                            <div class="col-8 ">
+                                <h2>{{ record.titel }}</h2>
                             </div>
-                    </div>
+                            <div class="col-4 stars_container">
+                                    <div class="stars" data-stars="{{record.id}}">
+                                        {% for i in 1..5 %}
+                                            {% if record.gemiddelde_waardering >= i %}
+                                                <div class="star" data-value="{{i}}"><i data-value="{{i}}" class="fa fa-star"></i></div>
+                                            {% else %}
+                                                <div class="star" data-value="{{i}}"><i class="far fa-star"></i></div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                        </div>
 
-                    <div class="dishes_short_description">
-                        <p>{{record.korte_omschrijving}}</p>
-                    </div>
+                        <div class="dishes_short_description">
+                            <p>{{record.korte_omschrijving}}</p>
+                        </div>
 
-                    <div class="dishes_bottom_row">
-                        <div class="dish_dishplay_button">
-                            <a href="index.php?gerecht_id={{record.id}}&action=detail" ><h3>Smullen!</h3></a>
-                        </div>               
-                        <div class="bottom_right">
-                            <p><i class="fa fa-male"></i> 4</p>
-                            <p><i class="fa fa-euro-sign euro_sign"></i> {{record.totaalprijs}},-</p>
-                            <p><i class="fa fa-fire"></i> {{record.calorieen}}</p>                         
+                        <div class="dishes_bottom_row">
+                            <div class="dish_dishplay_button">
+                                <a href="index.php?gerecht_id={{record.id}}&action=detail" ><h3>Smullen!</h3></a>
+                            </div>               
+                            <div class="bottom_right">
+                                <p><i class="fa fa-male"></i> 4</p>
+                                <p><i class="fa fa-euro-sign euro_sign"></i> {{record.totaalprijs}},-</p>
+                                <p><i class="fa fa-fire"></i> {{record.calorieen}}</p>                         
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-
+            {% endfor %}
+        </div>
+    {% endif %}
      {# Dump 
        <pre>
         {{ dump(data) }}

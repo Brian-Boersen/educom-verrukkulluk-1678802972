@@ -21,52 +21,86 @@
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function() {
+        ///rating system---------------------------------------------------------------------------------------------------------
+            
+            {% if data|length != 0 %}
+                //on click change color of star to gold
+                $(".star").click(function() {
+                    const value = $(this).attr("data-value");
 
-            //on click change color of star to gold
-            $(".star").click(function() {
-                const value = $(this).attr("data-value");
+                    const stars_parent = $(this).parent().attr("data-stars");
+                    let everageRating = 0;
 
-                const stars_parent = $(this).parent().attr("data-stars");
-                let everageRating = 0;
+                    $.ajax({
+                        //server url
+                        url:"./index.php",
+                        type: "GET",
+                        data: {
+                            gerecht_id: {{ data.0.id }}, 
+                            rating: value, 
+                            action: "add_rating", 
+                            succes: function() {
+                                console.log("rating added | gerecbt_id: {{ data.0.id }} | rating: " + value + " | stars: " + stars_parent);
+                                
+                                //for each star element add and remove star color
+                                $(".star").each((index,elem) => {
+                                    const itemValue = $(elem).attr("data-value");
+                                    const parent = $(elem).parent().attr("data-stars");
 
-                $.ajax({
-                    //server url
-                    url:"./index.php",
-                    type: "GET",
-                    data: {
-                        gerecht_id: {{ data.0.id }}, 
-                        rating: value, 
-                        action: "add_rating", 
-                        succes: function() {
-                            console.log("rating added | gerecbt_id: {{ data.0.id }} | rating: " + value + " | stars: " + stars_parent);
-                            
-                            //for each star element add and remove star color
-                            $(".star").each((index,elem) => {
-                                const itemValue = $(elem).attr("data-value");
-                                const parent = $(elem).parent().attr("data-stars");
+                                    if(parent == stars_parent){
+                                        //remove stars first
+                                        if($(elem).children(0).hasClass("far")){
+                                            $(elem).children(0).removeClass("far");
+                                        }
+                                        else{
+                                        $(elem).children(0).removeClass("fa");
+                                        }
 
-                                if(parent == stars_parent){
-                                    //remove stars first
-                                    if($(elem).children(0).hasClass("far")){
-                                        $(elem).children(0).removeClass("far");
+                                        //add color to relevent stars
+                                        if(itemValue <= value){
+                                            $(elem).children(0).addClass("fa");
+                                        }
+                                        else{
+                                            $(elem).children(0).addClass("far");
+                                        }
                                     }
-                                    else{
-                                    $(elem).children(0).removeClass("fa");
-                                    }
-
-                                    //add color to relevent stars
-                                    if(itemValue <= value){
-                                        $(elem).children(0).addClass("fa");
-                                    }
-                                    else{
-                                        $(elem).children(0).addClass("far");
-                                    }
-                                }
-                            });
+                                });
+                            }
                         }
-                    }
+                    });
                 });
-            })
+            {% endif %}
+    ///search system -------------------------------------------------------------------------------------------------------
+            function searchForDishes(searchkeys){
+                //replace where there are dots or spaces with commas
+                searchkeys = searchkeys.replace(/\.| /g, ",");
+
+                //if the first character is a comma remove it
+                if(searchkeys.charAt(0) == ","){
+                    searchkeys = searchkeys.substring(1);
+                }
+
+                console.log(searchkeys);
+
+                //load new page with searchkeys
+                window.location.href = "./index.php?action=search&search=" + searchkeys;
+            }
+
+            $(".search_button").click(function() {
+                //getting input value
+                const searchKey = $(".search_input").val();
+                       
+                searchForDishes(searchKey);
+            });
+
+            $(".search_input").keypress(function(e) {
+                if(e.which == 13) {
+                    //getting input value
+                    const searchKey = $(this).val();
+                    
+                    searchForDishes(searchKey);
+                }
+            });
         });
     </script>
     
@@ -80,8 +114,8 @@
             <div class="menu_logo" > <i class="fa fa-hamburger fa-3x"></i> </div>
             
             <div class="search_bar">
-                <i class="fa fa-search"></i>
-                <input type="text" placeholder="Zoekken">
+                <i class="fa fa-search search_button"></i>
+                <input class="search_input" type="text" placeholder="Zoekken">
             </div>
             
             {% block header %}
@@ -124,7 +158,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <input type="text" class="search_bar" placeholder="email" style="padding-left: 10px; border: none; outline: none;">
+                                <input type="text" class=" search_input" placeholder="email" style="padding-left: 10px; border: none; outline: none;">
                             </div>
                         </div>
                         <div class="row">

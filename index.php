@@ -58,6 +58,9 @@ $user_id = 1;
 $cart_item_id = isset($_GET["cart_item_id"]) ? $_GET["cart_item_id"] : null;
 $cart_item_count = isset($_GET["cart_item_count"]) ? $_GET["cart_item_count"] : 1;
 
+//search
+$search = isset($_GET["search"]) ? $_GET["search"] : null;
+
 switch($action) {  
     case "add_rating":{
         if(isset($rating)){             
@@ -93,6 +96,20 @@ switch($action) {
 
     case "update_cart_item":{
         $cart->updateItemInCart($cart_item_id,$cart_item_count);
+        break;
+    }
+
+    case "search":{
+        $data = $dish->searchDishes($search);
+
+        // //debugging
+        // echo "<pre>";
+        // //var_dump($keywords);
+        // var_dump(array_values($data));
+        // echo "</pre>";
+
+        $template = 'homepage.html.twig';
+        $title = "homepage";
         break;
     }
 

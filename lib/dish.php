@@ -14,6 +14,104 @@ class dish {
         $this->ingredient = new ingredient($connection);
         $this->dish_info = new dish_info($connection);
     }
+
+    public function searchDishes($keyword = "kaas,hamburger,roll"){
+        if($keyword == ""||$keyword == null){
+            return [];
+        }
+
+        $dishes = $this->selectDishes();
+
+        //convert the keyword to lowercase
+        $keyword = strtolower($keyword);
+
+        //split she keyword in words where there is a space or a comma or a dot, and put them in an array
+        $keywords = preg_split("/[\s,\.]+/", $keyword);
+
+        $searchResult = [];
+
+        //for each word in the keywords array
+        foreach($keywords as $singleKeyword){
+            //check if the arrays content cotains the keyword
+            $searchResult += array_filter($dishes, function($dish) use ($singleKeyword){
+                //goes trough all $dish keys with a string value
+                foreach($dish as $key => $value){
+                    //goes trough the array, or loop once if it is not an array
+                    foreach((array)$value as $subkey => $subvalue){
+                        //same here, it's a tree dimensional array
+                        foreach((array)$subvalue as $subsubkey => $subsubvalue){
+                            //if the subsubvalue is a string
+                            if(is_string($subsubvalue)){
+                                //value to lowercase
+                                $lowercaseSubsubvalue = strtolower($subsubvalue);
+                                //if the keyword is found in the string return true
+                                if(strpos($lowercaseSubsubvalue, $singleKeyword) !== false){
+                                    return true;
+                                }
+                            }
+                        } 
+                    }
+                }    
+            });            
+        }
+
+        // //debugging
+        // echo "<pre>";
+        // //var_dump($keywords);
+        // var_dump(array_values($searchResult));
+        // echo "</pre>";
+
+        //return the search result
+        return array_values($searchResult);
+    }
+
+    //old code for search function, so unefficient
+    /* //for each word in the keywords array
+        foreach($keywords as $singleKeyword){
+                //check if the arrays content cotains the keyword
+                $searchResult += array_filter($dishes, function($dish) use ($singleKeyword){
+                    //goes trough all $dish keys with a string value
+                    foreach($dish as $key => $value){
+                        //if key is an array go trough the array
+                        if(is_array($value)){
+                            foreach($value as $subkey => $subvalue){
+                                //if the subvalue is a array
+                                if(is_array($subvalue)){
+                                    //go trough the array
+                                    foreach($subvalue as $subsubkey => $subsubvalue){
+                                        //if the subsubvalue is a string
+                                        if(is_string($subsubvalue)){
+                                            //value to lowercase
+                                            $lowercaseSubsubvalue = strtolower($subsubvalue);
+                                            //if the keyword is found in the string return true
+                                            if(strpos($lowercaseSubsubvalue, $singleKeyword) !== false){
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                }
+                                elseif(is_string($subvalue)){
+                                    //value to lowercase
+                                    $lowercasesubvalue = strtolower($subvalue);
+                                    //if the keyword is found in the string return true
+                                    if(strpos($lowercasesubvalue, $singleKeyword) !== false){
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        elseif(is_string($value)){
+                            //value to lowercase
+                            $value = strtolower($value);
+                            //if the keyword is found in the string return true
+                            if(strpos($value, $singleKeyword) !== false){
+                                return true;
+                            }
+                        }
+                    }
+                });        
+            
+        }*/ 
     
     public function selectDishes($dish_id = null){
         $dishes = [];
@@ -34,11 +132,11 @@ class dish {
 
             $dishes[] = [
                 "id" => $current_dish_id["id"],
+                "titel" => $current_dish_id["titel"],
                 "keuken" => $this->getKitchen($current_dish_id["keuken_id"]),
                 "type" => $this->getType($current_dish_id["type_id"]),
                 "user" => $this->getUser($current_dish_id["user_id"]),
                 "datum_toegevoegd" => $current_dish_id["datum_toegevoegd"],
-                "titel" => $current_dish_id["titel"],
                 "korte_omschrijving" => $current_dish_id["korte_omschrijving"],
                 "lange_omschrijving" => $current_dish_id["lange_omschrijving"],
                 "afbeelding" => $current_dish_id["afbeelding"],
