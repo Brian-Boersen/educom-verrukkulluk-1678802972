@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 08:34 PM
+-- Generation Time: Apr 06, 2023 at 04:45 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -128,7 +128,74 @@ INSERT INTO `gerecht_info` (`id`, `record_type`, `gerecht_id`, `user_id`, `datum
 (23, 'O', 2, 2, '2023-03-08', NULL, 'wel lekker maar simpel'),
 (47, 'F', 2, 1, NULL, NULL, NULL),
 (48, 'W', 2, 1, NULL, 1, NULL),
-(49, 'W', 2, 2, NULL, 2, NULL);
+(49, 'W', 2, 2, NULL, 2, NULL),
+(79, 'W', 4, NULL, NULL, 4, NULL),
+(97, 'W', 3, NULL, NULL, 3, NULL),
+(98, 'W', 3, NULL, NULL, 2, NULL),
+(99, 'W', 3, NULL, NULL, 4, NULL),
+(100, 'W', 3, NULL, NULL, 5, NULL),
+(101, 'W', 3, NULL, NULL, 4, NULL),
+(102, 'W', 3, NULL, NULL, 3, NULL),
+(103, 'W', 1, NULL, NULL, 2, NULL),
+(104, 'W', 1, NULL, NULL, 3, NULL),
+(105, 'W', 1, NULL, NULL, 2, NULL),
+(106, 'W', 1, NULL, NULL, 2, NULL),
+(107, 'W', 1, NULL, NULL, 3, NULL),
+(108, 'W', 1, NULL, NULL, 4, NULL),
+(109, 'W', 1, NULL, NULL, 3, NULL),
+(110, 'W', 1, NULL, NULL, 4, NULL),
+(111, 'W', 1, NULL, NULL, 5, NULL),
+(112, 'W', 1, NULL, NULL, 4, NULL),
+(113, 'W', 1, NULL, NULL, 3, NULL),
+(114, 'W', 2, NULL, NULL, 3, NULL),
+(115, 'W', 2, NULL, NULL, 2, NULL),
+(116, 'W', 2, NULL, NULL, 3, NULL),
+(117, 'W', 1, NULL, NULL, 2, NULL),
+(132, 'F', 1, 1, NULL, NULL, NULL),
+(133, 'W', 1, NULL, NULL, 4, NULL),
+(134, 'W', 1, NULL, NULL, 3, NULL),
+(135, 'W', 1, NULL, NULL, 2, NULL),
+(136, 'W', 1, NULL, NULL, 3, NULL),
+(137, 'W', 1, NULL, NULL, 3, NULL),
+(138, 'W', 4, NULL, NULL, 3, NULL),
+(139, 'W', 4, NULL, NULL, 2, NULL),
+(140, 'W', 4, NULL, NULL, 4, NULL),
+(141, 'W', 4, NULL, NULL, 5, NULL),
+(142, 'W', 4, NULL, NULL, 4, NULL),
+(143, 'W', 4, NULL, NULL, 5, NULL),
+(144, 'W', 4, NULL, NULL, 5, NULL),
+(145, 'W', 4, NULL, NULL, 5, NULL),
+(146, 'W', 1, NULL, NULL, 3, NULL),
+(147, 'W', 1, NULL, NULL, 3, NULL),
+(148, 'W', 1, NULL, NULL, 4, NULL),
+(149, 'W', 1, NULL, NULL, 4, NULL),
+(150, 'W', 1, NULL, NULL, 4, NULL),
+(151, 'W', 1, NULL, NULL, 4, NULL),
+(152, 'W', 1, NULL, NULL, 4, NULL),
+(153, 'W', 1, NULL, NULL, 4, NULL),
+(154, 'W', 1, NULL, NULL, 4, NULL),
+(155, 'W', 1, NULL, NULL, 4, NULL),
+(156, 'W', 1, NULL, NULL, 4, NULL),
+(157, 'W', 1, NULL, NULL, 4, NULL),
+(158, 'W', 1, NULL, NULL, 4, NULL),
+(159, 'W', 1, NULL, NULL, 5, NULL),
+(160, 'W', 1, NULL, NULL, 5, NULL),
+(161, 'W', 1, NULL, NULL, 5, NULL),
+(162, 'W', 1, NULL, NULL, 5, NULL),
+(163, 'W', 1, NULL, NULL, 5, NULL),
+(164, 'W', 1, NULL, NULL, 5, NULL),
+(165, 'W', 1, NULL, NULL, 5, NULL),
+(166, 'W', 1, NULL, NULL, 5, NULL),
+(167, 'W', 1, NULL, NULL, 5, NULL),
+(168, 'W', 1, NULL, NULL, 5, NULL),
+(169, 'W', 1, NULL, NULL, 5, NULL),
+(170, 'W', 1, NULL, NULL, 5, NULL),
+(171, 'W', 1, NULL, NULL, 5, NULL),
+(172, 'W', 1, NULL, NULL, 5, NULL),
+(173, 'W', 1, NULL, NULL, 5, NULL),
+(174, 'W', 1, NULL, NULL, 5, NULL),
+(175, 'W', 1, NULL, NULL, 5, NULL),
+(176, 'W', 1, NULL, NULL, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,6 +305,16 @@ CREATE TABLE `winkelmand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `winkelmand`
+--
+
+INSERT INTO `winkelmand` (`id`, `user_id`, `artikel_id`, `aantal`, `deel_in_gebruik`) VALUES
+(161, 1, 1, 2, 1.33333),
+(162, 1, 2, 4, 4),
+(165, 1, 3, 1, 0.333333),
+(166, 1, 4, 2, 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -312,7 +389,7 @@ ALTER TABLE `gerecht`
 -- AUTO_INCREMENT for table `gerecht_info`
 --
 ALTER TABLE `gerecht_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `ingredient`
@@ -336,7 +413,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `winkelmand`
 --
 ALTER TABLE `winkelmand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- Constraints for dumped tables
