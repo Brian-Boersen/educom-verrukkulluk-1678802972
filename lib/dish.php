@@ -22,8 +22,6 @@ class dish {
 
         $dishes = $this->selectDishes();
 
-        $keyword = strtolower($keyword);
-
         $keywords = preg_split("/[\s,\.]+/", $keyword);
 
         $searchResult = [];
@@ -32,7 +30,7 @@ class dish {
             foreach($dishes as $dish){
                 $json = json_encode($dish);
 
-                if(strpos($json, $keyValue) !== false){
+                if(stripos($json, $keyValue) !== false){
                     $searchResult[] = $dish;
                 }
             }
