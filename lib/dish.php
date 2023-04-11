@@ -15,17 +15,15 @@ class dish {
         $this->dish_info = new dish_info($connection);
     }
 
-    public function searchDishes($keyword = "kaas,hamburger,roll"){
+    public function searchDishes($keyword){
         if($keyword == ""||$keyword == null){
             return [];
         }
 
         $dishes = $this->selectDishes();
 
-        //convert the keyword to lowercase
         $keyword = strtolower($keyword);
 
-        //split she keyword in words where there is a space or a comma or a dot, and put them in an array
         $keywords = preg_split("/[\s,\.]+/", $keyword);
 
         $searchResult = [];
