@@ -29,37 +29,16 @@ class dish {
         $keywords = preg_split("/[\s,\.]+/", $keyword);
 
         $searchResult = [];
+    
+        foreach($keywords as $keyValue){   
+            foreach($dishes as $dish){
+                $json = json_encode($dish);
 
-        //for each word in the keywords array
-        foreach($keywords as $singleKeyword){
-            //check if the arrays content cotains the keyword
-            $searchResult += array_filter($dishes, function($dish) use ($singleKeyword){
-                //goes trough all $dish keys with a string value
-                foreach($dish as $key => $value){
-                    //goes trough the array, or loop once if it is not an array
-                    foreach((array)$value as $subkey => $subvalue){
-                        //same here, it's a tree dimensional array
-                        foreach((array)$subvalue as $subsubkey => $subsubvalue){
-                            //if the subsubvalue is a string
-                            if(is_string($subsubvalue)){
-                                //value to lowercase
-                                $lowercaseSubsubvalue = strtolower($subsubvalue);
-                                //if the keyword is found in the string return true
-                                if(strpos($lowercaseSubsubvalue, $singleKeyword) !== false){
-                                    return true;
-                                }
-                            }
-                        } 
-                    }
-                }    
-            });            
+                if(strpos($json, $keyValue) !== false){
+                    $searchResult[] = $dish;
+                }
+            }
         }
-
-        // //debugging
-        // echo "<pre>";
-        // //var_dump($keywords);
-        // var_dump(array_values($searchResult));
-        // echo "</pre>";
 
         //return the search result
         return array_values($searchResult);
